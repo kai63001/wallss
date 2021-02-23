@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.sass'
 
 export default function Home() {
   return (
     <Layout>
       <div>
       <Image
-        src="/static/images/wallpaper4.jpg"
+        src="/static/images/wallpaper5.png"
         alt="Walls free wallpaper background image hd"
         width={100}
         height={43}
