@@ -1,0 +1,9 @@
+version: "3.9"
+services: 
+  server:
+    image: romeo
+    build: server/
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server/.:/usr/src/app
