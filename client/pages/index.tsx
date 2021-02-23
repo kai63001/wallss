@@ -6,16 +6,10 @@ import styles from '../styles/Home.module.sass'
 export default function Home() {
   return (
     <Layout>
-      <div>
-      <Image
-        src="/static/images/wallpaper5.png"
-        alt="Walls free wallpaper background image hd"
-        width={100}
-        height={43}
-        layout="responsive"
-      />
+      <br/>
+      <div className="main">
+        asd
       </div>
-      asdas
     </Layout>
   )
 }

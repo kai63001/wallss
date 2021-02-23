@@ -1,11 +1,63 @@
 $font-stack: 'Roboto', sans-serif
 $primary-color: #ef1c83
-$background-color: #f1f1f1
+$background-color: #fafafa
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap')
 
 body
   font-family: $font-stack
   padding: 0
   margin: auto
   background-color: $background-color
+
+.main
+  max-width: 1290px
+  margin: auto
+
+.container
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  grid-gap: 10px 15px
+  width: 100%
+  height: 100%
+
+.navbar
+  font-weight: bolder
+  font-family: 'Fredoka One', cursive !important
+  background: white
+  padding: 15px 15px
+  .logo
+    grid-column: span 1
+    font-size: 25px
+    background: #000000
+    background: -webkit-linear-gradient(to right, #000000 65%, #EF1C83 75%, rgba(251,94,58,1) 100%)
+    background: -moz-linear-gradient(to right, #000000 65%, #EF1C83 75%, rgba(251,94,58,1) 100%)
+    background: linear-gradient(to right, #000000 65%, #EF1C83 75%, rgba(251,94,58,1) 100%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+
+  .search
+    grid-column: span 8
+    padding-top: 5px
+
+  .right
+    grid-column: span 3
+    text-align: right
+    padding-top: 5px
+
+.main-btn
+  background: rgb(237,23,134)
+  background: linear-gradient(100deg, rgba(237,23,134,1) 25%, rgba(251,94,58,1) 100%)
+  color: white
+  padding: 10px 20px
+  text-decoration: none
+  border-radius: 5px
+
+.dark-btn
+  background: #222222dd
+  color: white
+  padding: 10px 20px
+  text-decoration: none
+  border-radius: 5px
+  margin-left: 5px
