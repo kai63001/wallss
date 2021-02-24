@@ -7,16 +7,23 @@ services:
       - 4000:4000
     volumes:
       - ./server/.:/usr/src/app/server
+    links:
+      - mongo
   mongo:
     image: mongo
     restart: always
     ports:
       - 27017:27017
+    command: --auth
     volumes:
       - data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+    #   - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: qw123456
+    #   MONGO_DATABASE: wallss
+    #   MONGO_USERNAME: romeo
+    #   MONGO_PASSWORD: qw123456
 
   mongo-express:
     image: mongo-express
@@ -24,8 +31,8 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root1
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
 
 volumes:
   data:
