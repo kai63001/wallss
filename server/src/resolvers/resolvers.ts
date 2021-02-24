@@ -28,6 +28,7 @@ const resolvers = {
       return user;
     },
     users: (parent: any, args: any, context: any, info: any) => users,
+    wallpapers: (parent: any, args: any, context: any, info: any) => Wallpaper.find({}),
   },
   Mutation : {
     addWallpaper: (parent: any, args: any, context: any, info: any) => {
