@@ -7,7 +7,10 @@ export default function Home() {
   return (
     <Layout>
       <br/>
-      <div className="main">
+      <br/>
+      <br/>
+      <br/>
+      <div className="main2">
         asd
       </div>
     </Layout>
