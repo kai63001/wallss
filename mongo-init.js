@@ -1,5 +1,3 @@
-db.auth('root', 'qw123456')
-
 db = db.getSiblingDB('wallss')
 db.createUser(
     {

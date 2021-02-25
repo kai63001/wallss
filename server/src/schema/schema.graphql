@@ -1,20 +1,22 @@
 type Query {
   me: User!
-  user(id: ID!): User
+  user(_id: ID!): User
   users: [User]!
-  wallpapers: [Wallpaper]!
+  wallpapers: [Wallpaper]
 }
 
 type Mutation {
     addWallpaper(image: String!): Wallpaper
 }
 
-type Wallpaper {
-    id: ID!
-    image: String!
-}
 
 type User {
-  id: ID!
+  _id: ID!
   name: String!
+}
+
+type Wallpaper {
+    _id: ID!
+    image: String!
+    users: [User] 
 }
