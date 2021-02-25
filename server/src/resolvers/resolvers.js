@@ -28,6 +28,7 @@ const resolvers = {
       //       }
       //     })
       //   })
+      // 
       return Wallpaper.find().populate('users')
     },
     user: (parent, args ,context, info) => {
