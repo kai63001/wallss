@@ -12,10 +12,10 @@ const WallpaperSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    users: [{
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }
 })
 
 const Wallpaper = mongoose.model('Wallpaper', WallpaperSchema);

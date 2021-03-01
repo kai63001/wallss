@@ -5,6 +5,7 @@ import resolvers from "./resolvers/resolvers";
 import fs from "fs";
 import mongoose from "mongoose";
 import path from "path";
+import getUser from './getUser';
 
 const connectServer = async () => {
   try {
@@ -22,9 +23,17 @@ const connectServer = async () => {
       .toString();
 
     const app: Application = express();
+    type Req = {  req: any }
     const server = new ApolloServer({
       typeDefs,
       resolvers,
+      context: (context:any) => {
+        const token = context.req.headers.authorization || '';
+        console.log("token:"+token)
+        const user:any = getUser(token);
+
+        return {user};
+      }
     });
 
     server.applyMiddleware({ app });

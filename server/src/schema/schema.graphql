@@ -1,4 +1,5 @@
 type Query {
+  login(username: String!,password: String!): AuthData,
   me: User!
   user(_id: ID!): User
   users: [User]!
@@ -6,9 +7,8 @@ type Query {
 }
 
 type Mutation {
-    addWallpaper(image: String!): Wallpaper
+    addWallpaper(image: String!,date: Int!): Wallpaper
 }
-
 
 type User {
   _id: ID!
@@ -18,5 +18,12 @@ type User {
 type Wallpaper {
     _id: ID!
     image: String!
-    users: [User] 
+    user: User,
+    date: Int
+}
+
+type AuthData {
+  _id: ID,
+  jwt: String, 
+  username: String
 }
