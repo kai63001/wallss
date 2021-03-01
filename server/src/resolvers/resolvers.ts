@@ -21,6 +21,7 @@ const resolvers = {
       const password: String = args.password as String;
       let token:String = "";
       const user = await User.findOne({username,password});
+      if (!user) throw Error("User not found");
       if (user){
         token = jwt.sign({userId: user._id,name: user?.get("name")},process.env.SECRET || 'shadow', {expiresIn: '7days'});
       }
