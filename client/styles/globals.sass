@@ -32,7 +32,7 @@ body
   background: white
   padding: 15px 15px
   position: fixed
-  width:100%
+  width: 100%
   .logo
     grid-column: span 1
     font-size: 25px
@@ -45,12 +45,28 @@ body
 
   .search
     grid-column: span 8
-    padding-top: 5px
+    margin-top: -5px
+    .searchinput
+      width: 93%
+      border: none
+      padding: 9px 30px
+      font-size: 17px
+      background: #f0f0f0dd
+      color: #1a1a1a
+      border-radius: 5px
+      outline: none
+      font-family: 'Fredoka One', cursive !important
+    // padding-top: 5px
 
   .right
     grid-column: span 3
-    text-align: right
+    // text-align: right
     padding-top: 5px
+  @media only screen and  (max-width: 768px)
+    .search
+      display: none
+    .right
+      grid-column: span 10
 
 .main-btn
   background: rgb(237,23,134)
@@ -59,6 +75,7 @@ body
   padding: 10px 20px
   text-decoration: none
   border-radius: 5px
+  white-space: nowrap !important
 
 .dark-btn
   background: #222222dd
@@ -67,3 +84,4 @@ body
   text-decoration: none
   border-radius: 5px
   margin-left: 5px
+  white-space: nowrap !important
