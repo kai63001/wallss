@@ -1,6 +1,25 @@
 .mainImage
-    grid-column: span 4  
+    grid-column: span 4 
+
+.bannerOne
+    position: relative
+    .mainName
+        position: absolute
+        z-index: 90
+        color: white
+        top: 10
+        left: 30px
+        font-family: 'Fredoka One', cursive !important
+        font-size: 25px
+    .btnBanner
+        z-index: 90
+        position: absolute
+        font-family: 'Fredoka One', cursive !important
+        bottom: 20%
+        left: 30px
     
 @media only screen and (max-width: 768px)
     .mainImage
         grid-column: span 12
+    .bannerOne
+        display: none

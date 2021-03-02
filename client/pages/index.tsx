@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import Image from "next/image";
 import styles from "../styles/Home.module.sass";
+import Link from "next/link";
 
 export default function Home() {
   const image = [
@@ -35,9 +36,24 @@ export default function Home() {
           })}
         </div>
         {/* จบส่วนบน */}
-        <br/>
-        <br/>
-        <Image
+        <br />
+        <br />
+        <div className={styles.bannerOne}>
+          <div className={styles.mainName}>
+            <h2>
+              Share the things <br /> you create, or share the things <br /> you
+              love.
+            </h2>
+          </div>
+          <div className={styles.btnBanner}>
+            <Link href="/">
+              <a className="main-btn">
+                {" "}
+                <i className="fas fa-upload"></i> Upload
+              </a>
+            </Link>
+          </div>
+          <Image
             className="imageRadius"
             src="/static/images/banner.jpg"
             alt="Picture of the author"
@@ -46,7 +62,16 @@ export default function Home() {
             quality={100}
             layout="intrinsic"
           />
+        </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </Layout>
   );
 }
