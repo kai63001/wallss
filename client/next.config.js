@@ -1,7 +1,21 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
-}
+  images: {
+    domains: [
+      "images.alphacoders.com", 
+      "images1.alphacoders.com",
+      "images2.alphacoders.com",
+      "images3.alphacoders.com",
+      "images4.alphacoders.com",
+      "images5.alphacoders.com",
+      "images6.alphacoders.com",
+      "images7.alphacoders.com",
+      "images8.alphacoders.com",
+      "images9.alphacoders.com",
+    ],
+  },
+};
