@@ -2,10 +2,11 @@ import User from "../models/User.model";
 import Wallpaper from "../models/Wallpaper.model";
 import jwt from "jsonwebtoken";
 
+const me = (parent: any, args: any, context: any, info: any) => User.find({})
+
 const resolvers = {
   Query: {
-    me: (parent: any, args: any, context: any, info: any) => User.find({}),
-    
+    me,
     users: (parent: any, args: any, context: any, info: any) => User.find({}),
     wallpapers: () => {
       return Wallpaper.find({}).populate('user')
