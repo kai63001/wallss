@@ -51,6 +51,7 @@ body
   .search
     grid-column: span 8
     margin-top: -5px
+    margin-left: 5%
     .searchinput
       width: 93%
       border: none
@@ -62,16 +63,27 @@ body
       outline: none
       font-family: 'Fredoka One', cursive !important
     // padding-top: 5px
+  .rightOne 
+    margin-left: 55%
+    grid-column: span 1
+    padding-top: 5px
 
   .right
-    grid-column: span 3
+    grid-column: span 1
+    margin-left: 40%
     // text-align: right
     padding-top: 5px
     // padding-right: 15px
   @media only screen and  (max-width: 768px)
     .search
       display: none
+    .rightOne 
+      margin-left: 0%
+      grid-column: span 10
+      text-align: right
     .right
+      display: none
+      margin-left: 0%
       grid-column: span 10
 
 .main-btn
@@ -86,10 +98,10 @@ body
 .dark-btn
   background: #222222dd
   color: white
-  padding: 10px 16px
+  padding: 10px 20px
   text-decoration: none
   border-radius: 5px
-  margin-left: 5px
+  margin-left: -5px
   white-space: nowrap !important
 
 .imageRadius 

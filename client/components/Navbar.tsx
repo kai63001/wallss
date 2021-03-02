@@ -10,10 +10,12 @@ const Navbar = (props) => (
           <input type="text" className="searchinput" placeholder="Search.."/>
         </form>
       </div>
-      <div className={"right"}>
+      <div className={"rightOne"}>
         <Link href="/">
           <a className="main-btn"> <i className="fas fa-upload"></i> Upload</a>
         </Link>
+      </div>
+      <div className={"right"}>
         <Link href="/">
           <a className="dark-btn">Create Account</a>
         </Link>
