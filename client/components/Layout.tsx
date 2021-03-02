@@ -6,7 +6,7 @@ const Navbar = dynamic(import("./Navbar"));
 const Layout = (props) => (
   <>
     <Head>
-      <link rel="icon" type="image/png" href="/smallMoonsTalk.png" />
+      <link rel="icon" type="image/png" href="/ice-cream.png" />
     </Head>
     <Header title={props.title} des={props.des} can={props.can} image={props.image} />
     <Navbar />
