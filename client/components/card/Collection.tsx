@@ -14,15 +14,21 @@ const Collection = (props) => (
           quality={50}
           layout="intrinsic"
         />
-        <span className={styles.name}>
-            HAHA
-        </span>
+        <span className={styles.name}>HAHA</span>
       </div>
       <div className={styles.love}>
         <i className={"far fa-heart " + styles.iconLove}></i> 10
       </div>
     </div>
-    asdas
+    <Image
+      className="imageRadius"
+      src="https://images6.alphacoders.com/112/thumb-1920-1126411.jpg"
+      alt="Naruto"
+      width={500}
+      height={300}
+      quality={50}
+      layout="intrinsic"
+    />
   </div>
 );
 

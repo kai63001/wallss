@@ -20,9 +20,9 @@ export default function Home() {
       <br />
       <div className="main2">
         <div className="container">
-          {image.map((i) => {
+          {image.map((i, key) => {
             return (
-              <div className={styles.mainImage}>
+              <div key={key} className={styles.mainImage}>
                 <Image
                   className="imageRadius"
                   src={i}
@@ -63,22 +63,27 @@ export default function Home() {
             layout="intrinsic"
           />
         </div>
-        <br/><br/>
-        <div className={styles.collection}>
-          <h2 className={styles.fontCollection}>Collection</h2>
-          <div className={styles.center}>
-          <Link href="/">
-              <a className="main-btn-outBack">
-                <div className="main-btn-outBack2">
-                  More Collections
-                </div>
-              </a>
-            </Link>
-          </div>
-        </div>
-        <br/>
+
         <div className="container">
-          <Collection />
+          <div className={styles.headCollet}>
+            <br />
+            <div className={styles.collection}>
+              <h2 className={styles.fontCollection}>Collection</h2>
+              <div className={styles.center}>
+                <Link href="/">
+                  <a className="main-btn-outBack">
+                    <div className="main-btn-outBack2">More Collections</div>
+                  </a>
+                </Link>
+              </div>
+            </div>
+            <br />
+          </div>
+          <div className={styles.bodyCollet}>
+            <div className="container">
+              <Collection />
+            </div>
+          </div>
         </div>
       </div>
       <br />

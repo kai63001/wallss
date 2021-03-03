@@ -1,5 +1,5 @@
 .mainImage
-    grid-column: span 4 
+    grid-column: span 4
 
 .bannerOne
     position: relative
@@ -30,9 +30,32 @@
         position: absolute
         top: 20%
         right: 0
-    
+
+.headCollet
+    grid-column: span 12
+
+.bodyCollet
+    grid-column: span 12
+
 @media only screen and (max-width: 768px)
+    .headCollet
+        order: 2
+
+    .bodyCollet
+        order: 1
     .mainImage
         grid-column: span 12
     .bannerOne
         display: none
+    .collection
+        display: flex
+        justify-content: center
+        position: relative
+        .fontCollection
+            display: none
+            font-size: 40px
+            margin: 0
+            padding: 0
+        .center
+            position: relative
+            right: 0
