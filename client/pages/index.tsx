@@ -81,7 +81,9 @@ export default function Home() {
           </div>
           <div className={styles.bodyCollet}>
             <div className="container">
-              <Collection />
+              {[...Array(3)].map((d,i)=>(
+                <Collection key={i} />
+              ))}
             </div>
           </div>
         </div>
