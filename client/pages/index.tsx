@@ -87,7 +87,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* next */}
+        {/* Wallpaper */}
         <br />
         <div className="container">
           <div className={styles.headCollet}>
@@ -140,7 +140,37 @@ export default function Home() {
             layout="intrinsic"
           />
         </div>
-        
+        {/* Wallpaper */}
+        <br />
+        <div className="container">
+          <div className={styles.headCollet}>
+            <br />
+            <div className={styles.collection}>
+              <h2 className={styles.fontCollection}>Featured Mobile</h2>
+              <div className={styles.center}>
+                <Link href="/">
+                  <a className="main-btn-outBack">
+                    <div className="main-btn-outBack2">More Wallpapers</div>
+                  </a>
+                </Link>
+              </div>
+            </div>
+            <br />
+          </div>
+          {[...Array(12)].map((d, i) => (
+            <div key={i} className={styles.mobileMain}>
+              <Image
+                className="imageRadius"
+                src="https://mfiles.alphacoders.com/903/thumb-1920-903501.jpg"
+                alt="Picture of the author"
+                width={500}
+                height={900}
+                quality={100}
+                layout="intrinsic"
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <br />
       <br />
