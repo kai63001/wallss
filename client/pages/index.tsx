@@ -89,7 +89,33 @@ export default function Home() {
         </div>
         {/* next */}
         <div className="container">
-          sad
+          <div className={styles.headCollet}>
+            <br />
+            <div className={styles.collection}>
+              <h2 className={styles.fontCollection}>Featured Wallpaper</h2>
+              <div className={styles.center}>
+                <Link href="/">
+                  <a className="main-btn-outBack">
+                    <div className="main-btn-outBack2">More Wallpapers</div>
+                  </a>
+                </Link>
+              </div>
+            </div>
+            <br />
+          </div>
+          {[...Array(6)].map((d, i) => (
+            <div key={i} className={styles.mainImage}>
+              <Image
+                className="imageRadius"
+                src="https://images2.alphacoders.com/113/thumb-1920-1134490.jpg"
+                alt="Picture of the author"
+                width={500}
+                height={300}
+                quality={100}
+                layout="intrinsic"
+              />
+            </div>
+          ))}
         </div>
       </div>
       <br />
