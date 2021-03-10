@@ -63,7 +63,7 @@ export default function Home() {
             layout="intrinsic"
           />
         </div>
-
+        {/* Collection */}
         <div className="container">
           <div className={styles.headCollet}>
             <br />
@@ -81,11 +81,15 @@ export default function Home() {
           </div>
           <div className={styles.bodyCollet}>
             <div className="container">
-              {[...Array(3)].map((d,i)=>(
+              {[...Array(6)].map((d, i) => (
                 <Collection key={i} />
               ))}
             </div>
           </div>
+        </div>
+        {/* next */}
+        <div className="container">
+          sad
         </div>
       </div>
       <br />
