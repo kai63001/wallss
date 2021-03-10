@@ -88,7 +88,7 @@ export default function Home() {
           </div>
         </div>
         {/* next */}
-        <br/>
+        <br />
         <div className="container">
           <div className={styles.headCollet}>
             <br />
@@ -119,14 +119,16 @@ export default function Home() {
           ))}
         </div>
         {/* banner2 */}
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div className={styles.bannerOne}>
-          <div className={styles.mainName}>
-            <h2>
-              Share the things <br /> you create, or share the things <br /> you
-              love.
-            </h2>
+          <div className={styles.centerMain}>
+            <div className={styles.details}>
+              <h2>Keywords trending this week</h2>
+              {[...Array(15)].map((d,i)=>(
+                <span key={i} className={styles.keyword}>Naruto</span>
+              ))}
+            </div>
           </div>
           <Image
             className="imageRadius"
@@ -138,6 +140,7 @@ export default function Home() {
             layout="intrinsic"
           />
         </div>
+        
       </div>
       <br />
       <br />
