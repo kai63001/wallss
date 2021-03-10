@@ -88,6 +88,7 @@ export default function Home() {
           </div>
         </div>
         {/* next */}
+        <br/>
         <div className="container">
           <div className={styles.headCollet}>
             <br />
@@ -116,6 +117,26 @@ export default function Home() {
               />
             </div>
           ))}
+        </div>
+        {/* banner2 */}
+        <br/>
+        <br/>
+        <div className={styles.bannerOne}>
+          <div className={styles.mainName}>
+            <h2>
+              Share the things <br /> you create, or share the things <br /> you
+              love.
+            </h2>
+          </div>
+          <Image
+            className="imageRadius"
+            src="/static/images/banner3.jpg"
+            alt="Picture of the author"
+            width={1300}
+            height={300}
+            quality={100}
+            layout="intrinsic"
+          />
         </div>
       </div>
       <br />
