@@ -4,8 +4,29 @@ import Image from "next/image";
 import styles from "../styles/Home.module.sass";
 import Link from "next/link";
 import Collection from "../components/card/Collection";
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+
+// import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+const JOBS_QUERY = gql`
+  query Wallpapers {
+    wallpapers {
+      image
+    }
+  }
+`;
 
 export default function Home() {
+  const { data, loading, error } = useQuery(JOBS_QUERY);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {JSON.stringify(error)}</p>;
+  }
+  console.log(data)
   const image = [
     "https://images4.alphacoders.com/113/1133943.png",
     "https://images.alphacoders.com/113/1133684.jpg",
@@ -174,6 +195,9 @@ export default function Home() {
       </div>
       <br />
       <br />
+      {data.wallpapers.map(job => {
+          return <li key={`job__${job.id}`}>{job.image}</li>;
+        })}
       <br />
       <br />
       <br />
@@ -183,3 +207,5 @@ export default function Home() {
     </Layout>
   );
 }
+
+

@@ -31,7 +31,7 @@ const resolvers = {
   },
   Mutation: {
     addWallpaper: (parent: any, args: any, context: any, info: any) => {
-      console.log(context);
+      // console.log(context);
       if (!context.user) throw new Error("Please login");
       const userId = context.user.userId || '';
       const date = Date.now();
@@ -40,7 +40,7 @@ const resolvers = {
     register: async (parent: any, args: any, context: any, info: any) => {
       const username: String = args.username as String;
       const checkUser = await  User.findOne({username:args.username});
-      console.log(checkUser)
+      // console.log(checkUser)
       if(checkUser) throw new Error("username already exit")
       return User.create(args);
     }
