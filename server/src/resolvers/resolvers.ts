@@ -36,6 +36,13 @@ const resolvers = {
       const userId = context.user.userId || '';
       return Wallpaper.create({...args, user: userId});
     },
+    register: async (parent: any, args: any, context: any, info: any) => {
+      const username: String = args.username as String;
+      const checkUser = await  User.findOne({username:args.username});
+      console.log(checkUser)
+      if(checkUser) throw new Error("username already exit")
+      return User.create(args);
+    }
     // addUser: (parent: any, args: any, context: any, info: any) => {
     //   return User.create(args);
     // }

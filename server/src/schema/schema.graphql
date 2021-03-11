@@ -8,6 +8,7 @@ type Query {
 
 type Mutation {
     addWallpaper(image: String!,date: Int!): Wallpaper
+    register(username: String!,password: String!,name:String!): User
 }
 
 type User {
