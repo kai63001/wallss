@@ -5,27 +5,39 @@ import styles from "../styles/Home.module.sass";
 import Link from "next/link";
 import Collection from "../components/card/Collection";
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery,useMutation } from '@apollo/react-hooks';
+// import cookieCutter from 'cookie-cutter'
+// import Cookies from 'cookies'
+import { useCookies } from "react-cookie"
+
 
 // import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 const JOBS_QUERY = gql`
-  query Wallpapers {
-    wallpapers {
+  mutation AddWallpaper($image: String!) {
+    addWallpaper(image: $image){
       image
     }
   }
 `;
 
 export default function Home() {
-  const { data, loading, error } = useQuery(JOBS_QUERY);
-
-  if (loading) {
-    return <p>Loading...</p>;
+  // const [cookie, setCookie] = useCookies(["user"])
+  if (typeof window !== 'undefined') { 
+    localStorage.setItem("user","barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ5ZWQ1Nzc3ZDViYzAwNTJjN2E0MmYiLCJuYW1lIjoicm9tZW8iLCJpYXQiOjE2MTU0NTgzNDQsImV4cCI6MTYxNjA2MzE0NH0.wSu4JKcTWW7X7-maalYzwK02p43UDVVLW4NMY9zMoGQ")
   }
+  // setCookie("user", "barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ5ZWQ1Nzc3ZDViYzAwNTJjN2E0MmYiLCJuYW1lIjoicm9tZW8iLCJpYXQiOjE2MTU0NTgzNDQsImV4cCI6MTYxNjA2MzE0NH0.wSu4JKcTWW7X7-maalYzwK02p43UDVVLW4NMY9zMoGQ")
+  // const data= useMutation(JOBS_QUERY);
+  const [addTodo, { data }] = useMutation(JOBS_QUERY);
+  let input;
 
-  if (error) {
-    return <p>Error: {JSON.stringify(error)}</p>;
-  }
+
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+
+  // if (error) {
+  //   return <p>Error: {JSON.stringify(error)}</p>;
+  // }
   // console.log(data)
   const image = [
     "https://images4.alphacoders.com/113/1133943.png",
@@ -39,6 +51,22 @@ export default function Home() {
       <br />
       <br />
       <br />
+      <div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          addTodo({ variables: { image: input.value } });
+          input.value = '';
+        }}
+      >
+        <input
+          ref={node => {
+            input = node;
+          }}
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+    </div>
       <div className="main2">
         <div className="container">
           {image.map((i, key) => {
@@ -195,9 +223,9 @@ export default function Home() {
       </div>
       <br />
       <br />
-      {data.wallpapers.map(job => {
+      {/* {data.wallpapers.map(job => {
           return <li key={`job__${job.id}`}>{job.image}</li>;
-        })}
+        })} */}
       <br />
       <br />
       <br />
@@ -207,5 +235,4 @@ export default function Home() {
     </Layout>
   );
 }
-
 
