@@ -29,7 +29,6 @@ const connectServer = async () => {
       resolvers,
       context: (context:any) => {
         const token = context.req.headers.authorization || '';
-        // console.log("token:"+token)
         const user:any = getUser(token);
 
         return {user};
