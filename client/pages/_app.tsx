@@ -3,11 +3,9 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 import {withApollo} from '../util/apollo';
 
-function MyApp({ Component, pageProps, apollo }) {
+function MyApp({ Component, pageProps}) {
   return (
-    <ApolloProvider client={apollo}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+      <Component/>
   );
 }
 

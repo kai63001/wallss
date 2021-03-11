@@ -26,7 +26,7 @@ export default function Home() {
   if (error) {
     return <p>Error: {JSON.stringify(error)}</p>;
   }
-  console.log(data)
+  // console.log(data)
   const image = [
     "https://images4.alphacoders.com/113/1133943.png",
     "https://images.alphacoders.com/113/1133684.jpg",
