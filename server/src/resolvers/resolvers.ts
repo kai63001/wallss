@@ -34,7 +34,8 @@ const resolvers = {
       console.log(context);
       if (!context.user) throw new Error("Please login");
       const userId = context.user.userId || '';
-      return Wallpaper.create({...args, user: userId});
+      const date = Date.now();
+      return Wallpaper.create({...args,date:date, user: userId});
     },
     register: async (parent: any, args: any, context: any, info: any) => {
       const username: String = args.username as String;
