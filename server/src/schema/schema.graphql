@@ -3,7 +3,7 @@ type Query {
   me: [User!]
   user(_id: ID!): User
   users: [User]!
-  wallpapers: [Wallpaper]
+  wallpapers(limit: Int): [Wallpaper]
 }
 
 type Mutation {

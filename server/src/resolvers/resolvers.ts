@@ -7,8 +7,8 @@ const resolvers = {
   Query: {
     me,
     users: (parent: any, args: any, context: any, info: any) => User.find({}),
-    wallpapers: () => {
-      return Wallpaper.find({}).populate('user')
+    wallpapers: (parent: any, args: any, context: any, info: any) => {
+      return Wallpaper.find({}).populate('user').limit(args.limit || 9)
     },
     user: (parent: any, args: { _id: any; } ,context: any, info: any) => {
       const id = args._id;
