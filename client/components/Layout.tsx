@@ -22,7 +22,17 @@ const Layout = (props) => (
       image={props.image}
     />
     <Navbar />
-    <main>{props.children}</main>
+    <main>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      {props.children}
+    </main>
+    <br/>
+    <br/>
+    <br/>
     <Footer />
   </>
 );

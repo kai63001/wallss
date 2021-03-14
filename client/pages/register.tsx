@@ -1,8 +1,18 @@
+import Layout from "../components/Layout";
+
 const Register = () => {
     return (
-        <div className="">
-            ads
-        </div>
+        <Layout>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <div className="main2">
+                ads
+            </div>
+            
+        </Layout>
     )
 }
 

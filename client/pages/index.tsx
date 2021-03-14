@@ -52,11 +52,6 @@ export default function Home() {
   ];
   return (
     <Layout>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       {/* <div>
       <form
         onSubmit={e => {
