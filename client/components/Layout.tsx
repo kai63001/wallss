@@ -30,9 +30,6 @@ const Layout = (props) => (
       <br />
       {props.children}
     </main>
-    <br/>
-    <br/>
-    <br/>
     <Footer />
   </>
 );
