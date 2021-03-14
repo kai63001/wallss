@@ -44,9 +44,6 @@ const resolvers = {
       if(checkUser) throw new Error("username already exit")
       return User.create(args);
     }
-    // addUser: (parent: any, args: any, context: any, info: any) => {
-    //   return User.create(args);
-    // }
   },
 };
 
