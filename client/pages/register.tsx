@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Register.module.sass";
 
 const Register = () => {
@@ -19,6 +20,8 @@ const Register = () => {
           </div>
           <div className={styles.mainContent}>
             <h1 className="p-0 m-0">Create an account</h1>
+            Already have an account? <Link href="/login"><a className="color-main">Sign In</a></Link>
+            <br/>
             <br/>
             <form action="#" method="POST">
                 <label className="main-label" htmlFor="username">Username :</label>
