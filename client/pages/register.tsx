@@ -10,5 +10,4 @@ const Register = () => {
     </Layout>
   );
 };
-
 export default Register;
