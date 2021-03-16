@@ -4,7 +4,7 @@ const Register = () => {
     return (
         <Layout>
             <div className="main2">
-                ads
+                ada
             </div>
         </Layout>
     )
