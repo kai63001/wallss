@@ -1,8 +1,37 @@
 .middle
+    top: 30%
+    margin: auto
+    max-width: 50%
+    padding: 10px
+    width: 100%
+
+.cover
+    width: 100%
+    height:204px
     position: relative
-    .center
-        margin: 0
-        position: absolute
-        top: 50%
-        -ms-transform: translateY(-50%)
-        transform: translateY(-50%)
+
+.mainContent
+    padding: 15px
+
+.content
+    background: white
+.btnSummit
+  background: rgb(237,23,134)
+  background: linear-gradient(100deg, rgba(237,23,134,1) 25%, rgba(251,94,58,1) 100%)
+  font-family: 'Fredoka One', cursive !important
+  border: none
+  color: white
+  padding: 10px 20px
+  text-decoration: none
+  border-radius: 5px
+  cursor: pointer
+  white-space: nowrap !important
+  float: right
+  font-size: 18px
+
+
+@media only screen and (max-width: 768px)
+    .middle
+        max-width: 90%
+    .cover
+        height:104px
