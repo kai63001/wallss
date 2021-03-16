@@ -27,13 +27,15 @@ const Register = () => {
                 <br/>
                 <label className="main-label" htmlFor="email">Email Address :</label>
                 <br/>
-                <input id="email" name="email" className="main-input" type="text" placeholder="user@wallss.net" required/>
+                <input id="email" name="email" className="main-input" type="email" placeholder="user@wallss.net" required/>
                 <label className="main-label" htmlFor="password">Password :</label>
                 <br/>
                 <input id="password" name="password" className="main-input" type="password" placeholder="wallPass@1234" required/>
                 <label className="main-label" htmlFor="vpassword">Verify Password :</label>
                 <br/>
-                <input id="password" name="vpassword" className="main-input" type="password" placeholder="wallPass@1234" required/>
+                <input id="vpassword" name="vpassword" className="main-input" type="password" placeholder="wallPass@1234" required/>
+                <input type="checkbox" name="accept" id="accept" required/>
+                <label htmlFor="accept">I have read and agree to the Privacy Policy</label>
                 <br/>
                 <br/>
                 <input type="submit" className={styles.btnSummit} value="Create account"/>
@@ -42,6 +44,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <br/>
     </Layout>
   );
 };
