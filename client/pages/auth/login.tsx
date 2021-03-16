@@ -5,7 +5,7 @@ import styles from "../../styles/Register.module.sass";
 
 const Register = () => {
   return (
-    <Layout>
+    <Layout title="Sign Into Wallss Community">
       <div className={styles.middle}>
         <div className={styles.content}>
           <div className={styles.cover}>
