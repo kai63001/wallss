@@ -16,7 +16,7 @@ const Navbar = (props) => (
         </Link>
       </div>
       <div className={"right"}>
-        <Link href="/register">
+        <Link href="/auth/register">
           <a className="dark-btn">Create Account</a>
         </Link>
       </div>
