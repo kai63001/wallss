@@ -10,12 +10,12 @@ const Register = () => {
         <div className={styles.content}>
           <div className={styles.cover}>
             <Image
-              src="https://images3.alphacoders.com/113/1131150.png"
+              src="https://images7.alphacoders.com/110/1109641.jpg"
               alt="wallss create an accounts"
               quality={100}
               layout="fill"
               objectFit="cover"
-              objectPosition="bottom center"
+              objectPosition="center center"
             />
           </div>
           <div className={styles.mainContent}>
