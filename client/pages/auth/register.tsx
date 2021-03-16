@@ -20,7 +20,7 @@ const Register = () => {
           </div>
           <div className={styles.mainContent}>
             <h1 className="p-0 m-0">Create an account</h1>
-            Already have an account? <Link href="/auth/login"><a className="color-main">Sign In</a></Link>
+            Already have an account? <Link href="/auth/login"><a className="color-main"> Sign In</a></Link>
             <br/>
             <br/>
             <form action="#" method="POST">

@@ -22,7 +22,7 @@ const Register = () => {
             <h1 className="p-0 m-0">Sign Into Wallss Community</h1>
             Don't have an account yet?
             <Link href="/auth/register">
-              <a className="color-main">Sign Up</a>
+              <a className="color-main"> Sign Up</a>
             </Link>
             <br />
             <br />
