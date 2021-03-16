@@ -54,7 +54,7 @@ const Register = () => {
                 required
               />
               
-              <input type="checkbox" name="remember" id="remember" required />
+              <input type="checkbox" name="remember" id="remember" />
               <label htmlFor="remember">
                  Remember me
               </label>
