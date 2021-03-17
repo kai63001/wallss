@@ -7,32 +7,39 @@ import gql from "graphql-tag";
 
 const REGISTER_MUTATION = gql`
   mutation Register($username: String!, $password: String!, $name: String!) {
-    register(username: $username, password: $password, name: $name){
+    register(username: $username, password: $password, name: $name) {
       name
     }
   }
 `;
 
 const Register = () => {
-  let [register, {data}] = useMutation(REGISTER_MUTATION)
+  let [register, { data }] = useMutation(REGISTER_MUTATION);
   const onRegister = (e) => {
     e.preventDefault();
-    console.log(e.target.username.value)
-   register({
-      variables:{
-        username: e.target.username.value,
-        password: e.target.password.value,
-        name: e.target.username.value,
-      }
-    }).then(response=>{
-      console.log(response)
-    }).catch(e => {
-      // console.log(e)
-      if(e == "Error: username already exit") {
-        console.log("username already exit")
-      }
-    })
-    
+    console.log(e.target.username.value);
+    if (e.target.password.value != e.target.vpassword.value) {
+      e.target.password.setCustomValidity("Password and VerifyPassword not match!!");
+      e.target.vpassword.setCustomValidity("Password and VerifyPassword not match!!");
+    } else {
+      register({
+        variables: {
+          username: e.target.username.value,
+          password: e.target.password.value,
+          name: e.target.username.value,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          // console.log(e)
+          if (error == "Error: username already exit") {
+            console.log("username already exit");
+            e.target.username.setCustomValidity("username already exit");
+          }
+        });
+    }
   };
   return (
     <Layout title="Create an account">
