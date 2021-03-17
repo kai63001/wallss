@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 const upload = () => {
     return (
         <Layout>
-            asdasdsaa
+            asdasdsa
         </Layout>
     )
 }
