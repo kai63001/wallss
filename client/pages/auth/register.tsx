@@ -5,6 +5,8 @@ import styles from "../../styles/Register.module.sass";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { useState } from "react";
+import { useRouter } from 'next/router'
+
 
 const REGISTER_MUTATION = gql`
   mutation Register($username: String!, $password: String!, $name: String!) {
@@ -15,6 +17,7 @@ const REGISTER_MUTATION = gql`
 `;
 
 const Register = () => {
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +42,7 @@ const Register = () => {
       })
         .then((response) => {
           console.log(response);
+          router.push('/auth/login')
         })
         .catch((error) => {
           // console.log(e)
