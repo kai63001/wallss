@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "../../styles/Register.module.sass";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { useState } from "react";
 
 const REGISTER_MUTATION = gql`
   mutation Register($username: String!, $password: String!, $name: String!) {
@@ -14,19 +15,26 @@ const REGISTER_MUTATION = gql`
 `;
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [vpassword, setVPassword] = useState("");
   let [register, { data }] = useMutation(REGISTER_MUTATION);
   const onRegister = (e) => {
     e.preventDefault();
-    console.log(e.target.username.value);
-    if (e.target.password.value != e.target.vpassword.value) {
-      e.target.password.setCustomValidity("Password and VerifyPassword not match!!");
-      e.target.vpassword.setCustomValidity("Password and VerifyPassword not match!!");
+    if (password != vpassword) {
+      e.target.password.setCustomValidity(
+        "Password and VerifyPassword not match!!"
+      );
+      e.target.password.checkValidity();
+
+      // e.setCustomValidity('');
     } else {
       register({
         variables: {
-          username: e.target.username.value,
-          password: e.target.password.value,
-          name: e.target.username.value,
+          username: username,
+          password: password,
+          name: username,
         },
       })
         .then((response) => {
@@ -74,7 +82,11 @@ const Register = () => {
                 className="main-input"
                 type="text"
                 placeholder="wallss"
-                required
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  e.target.setCustomValidity('')
+                }}
               />
               <br />
               <label className="main-label" htmlFor="email">
@@ -87,7 +99,11 @@ const Register = () => {
                 className="main-input"
                 type="email"
                 placeholder="user@wallss.net"
-                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  e.target.setCustomValidity('')
+                }}
               />
               <label className="main-label" htmlFor="password">
                 Password :
@@ -99,6 +115,11 @@ const Register = () => {
                 className="main-input"
                 type="password"
                 placeholder="wallPass@1234"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  e.target.setCustomValidity('')
+                }}
                 required
               />
               <label className="main-label" htmlFor="vpassword">
@@ -111,6 +132,11 @@ const Register = () => {
                 className="main-input"
                 type="password"
                 placeholder="wallPass@1234"
+                value={vpassword}
+                onChange={(e) => {
+                  setVPassword(e.target.value);
+                  e.target.setCustomValidity('')
+                }}
                 required
               />
               <input type="checkbox" name="accept" id="accept" required />
