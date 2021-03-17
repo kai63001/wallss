@@ -6,7 +6,6 @@ import Link from "next/link";
 import Collection from "../components/card/Collection";
 import gql from 'graphql-tag';
 import { useQuery,useMutation } from '@apollo/react-hooks';
-import { useCookies } from "react-cookie"
 
 
 // const JOBS_QUERY = gql`
