@@ -1,27 +1,42 @@
 // const Link = require('next/link')
 import Link from "next/link";
+import { veriftToken } from "../middleware/auth.middleware";
 
-const Navbar = (props) => (
-  <nav className="navbar">
-    <div className={"container main"}>
-      <div className={"logo"}><Link href="/"><a>WALLSS</a></Link></div>
-      <div className={"search"}>
-        <form action="" method="get">
-          <input type="text" className="searchinput" placeholder="Search.."/>
-        </form>
+const Navbar = (props) => {
+  return (
+    <nav className="navbar">
+      <div className={"container main"}>
+        <div className={"logo"}>
+          <Link href="/">
+            <a>WALLSS</a>
+          </Link>
+        </div>
+        <div className={"search"}>
+          <form action="" method="get">
+            <input type="text" className="searchinput" placeholder="Search.." />
+          </form>
+        </div>
+        <div className={"rightOne"}>
+          <Link href="/upload">
+            <a className="main-btn">
+              <i className="fas fa-upload"></i> Upload
+            </a>
+          </Link>
+        </div>
+        <div className={"right"}>
+          {veriftToken() == null ? (
+            <Link href="/auth/register">
+              <a className="dark-btn">Create Account</a>
+            </Link>
+          ) : (
+            <Link href="/auth/register">
+              <a className="dark-btn">omeo</a>
+            </Link>
+          )}
+        </div>
       </div>
-      <div className={"rightOne"}>
-        <Link href="/upload">
-          <a className="main-btn"> <i className="fas fa-upload"></i> Upload</a>
-        </Link>
-      </div>
-      <div className={"right"}>
-        <Link href="/auth/register">
-          <a className="dark-btn">Create Account</a>
-        </Link>
-      </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 export default Navbar;
