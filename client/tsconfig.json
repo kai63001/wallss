@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "util/apollo.js", "util/apollo-client.js"  ],
+, "util/apollo.js", "util/apollo-client.js", "middleware/auth.middleware.ts"  ],
   "exclude": [
     "node_modules"
   ]

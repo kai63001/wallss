@@ -16,6 +16,8 @@ const resolvers = {
 
       return user;
     },
+  },
+  Mutation: {
     login: async (parent: any, args: any, context: any, info: any) => {
       const username: String = args.username as String;
       const password: String = args.password as String;
@@ -26,9 +28,7 @@ const resolvers = {
         token = jwt.sign({userId: user._id,name: user?.get("name")},process.env.SECRET || 'shadow', {expiresIn: '7days'});
       }
       return {_id:user?.get("_id"),jwt:token,usernameme:user?.get("name")};
-    }
-  },
-  Mutation: {
+    },
     addWallpaper: (parent: any, args: any, context: any, info: any) => {
       // console.log(context);
       console.log("addwallpaper")

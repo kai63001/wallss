@@ -2,12 +2,30 @@ import Layout from "../../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Register.module.sass";
-import { login } from "../../middleware/auth.middleware";
+import { login,LOGIN_QUERY } from "../../middleware/auth.middleware";
+import { useMutation } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
 
 const Register = () => {
+  const router = useRouter()
+  const [loginMutation, {loading,error}] = useMutation(LOGIN_QUERY)
   const letLogin = async e => {
     e.preventDefault()
-    console.log(await login(e.target.username.value,e.target.password.value,true))
+    loginMutation({variables:{
+      username:e.target.username.value,
+      password:e.target.password.value,
+    }}).then(async res => {
+      console.log(res.data.login.jwt)
+      const getLogin = await login(res.data.login.jwt)
+      if(getLogin == "success"){
+        router.push('/')
+      }
+    }).catch(error => {
+      if(error == "Error: User not found")
+        console.log("Error: User not found")
+    })
+
+    // console.log(login(e.target.username.value,e.target.password.value,true))
   }
   return (
     <Layout title="Sign Into Wallss Community">
