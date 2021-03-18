@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { truncateSync } from "fs";
 
 const SECRET = process.env.SECRET || "shadow";
 
@@ -30,7 +31,7 @@ export const veriftToken = () => {
     jwtToken = localStorage.getItem("user");
   }
   try {
-    console.log(jwtToken);
+    console.log(jwt.verify(jwtToken.split(" ")[1], SECRET));
     return jwt.verify(jwtToken.split(" ")[1], SECRET);
   } catch (e) {
     console.log("e:", e);

@@ -30,7 +30,7 @@ const Navbar = (props) => {
             </Link>
           ) : (
             <Link href="/auth/register">
-              <a className="dark-btn">omeo</a>
+              <a className="dark-btn">{veriftToken().name}</a>
             </Link>
           )}
         </div>
