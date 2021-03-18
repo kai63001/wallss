@@ -2,8 +2,13 @@ import Layout from "../../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Register.module.sass";
+import { login } from "../../middleware/auth.middleware";
 
 const Register = () => {
+  const letLogin = async e => {
+    e.preventDefault()
+    console.log(await login(e.target.username.value,e.target.password.value,true))
+  }
   return (
     <Layout title="Sign Into Wallss Community">
       <div className={styles.middle}>
@@ -26,7 +31,7 @@ const Register = () => {
             </Link>
             <br />
             <br />
-            <form action="#" method="POST">
+            <form onSubmit={letLogin}>
               <label className="main-label" htmlFor="username">
                 Username :
               </label>
