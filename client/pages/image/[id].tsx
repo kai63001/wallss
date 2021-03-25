@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import Layout from "../../components/Layout"
 
 const Image = () => {
     const router = useRouter()
@@ -7,9 +8,11 @@ const Image = () => {
 
 
     return (
-        <div className="">
-            asd
-        </div>
+        <Layout>
+            <div className="main2">
+                asd
+            </div>
+        </Layout>
     )
 
 }
