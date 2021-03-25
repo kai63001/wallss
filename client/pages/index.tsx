@@ -19,6 +19,7 @@ import { useQuery,useMutation } from '@apollo/react-hooks';
 const WALLPAPER_QUERY = gql`
     query Wallpaper {
       wallpapers{
+        _id,
         image
       }
     }
@@ -239,15 +240,19 @@ export default function Home() {
           </div>
           {data.wallpapers.map((d, i) => (
             <div key={i} className={styles.mainImage}>
-              <Image
-                className="imageRadius"
-                src={d.image}
-                alt="Picture of the author"
-                width={500}
-                height={300}
-                quality={100}
-                layout="intrinsic"
-              />
+              <Link href={`/image/${d._id}`}>
+                <a>
+                  <Image
+                  className="imageRadius"
+                  src={d.image}
+                  alt="Picture of the author"
+                  width={500}
+                  height={300}
+                  quality={100}
+                  layout="intrinsic"
+                />
+                </a>
+              </Link>
             </div>
           ))}
         </div>
