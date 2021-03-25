@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 // Query
 import { me ,users, user } from "../query/auth.query";
-import { wallpapers } from "../query/wallpaper.query";
+import { wallpapers,wallpaper } from "../query/wallpaper.query";
 
 // Mutaiton
 import { login, register } from "../mutation/auth.mutation"
@@ -16,7 +16,8 @@ const resolvers = {
     me,
     users,
     user,
-    wallpapers
+    wallpapers,
+    wallpaper
   },
   Mutation: {
     login,
