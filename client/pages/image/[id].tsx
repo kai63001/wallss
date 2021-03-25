@@ -55,7 +55,7 @@ const ImageWall = () => {
               />
             </div>
             <div className={styles.nameProfile}>
-              <h1 className={styles.nameWall}>Howl's Moving Castle</h1>
+              <h1 className={styles.nameWall}>{data.wallpaper.name || "Wallss"}</h1>
               <span className={styles.uploadBy}>by {data.wallpaper.user.name.toUpperCase()}</span>
             </div>
           </div>
