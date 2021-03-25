@@ -33,7 +33,7 @@ export default function Home() {
   // let input;
   const {data,loading ,error} = useQuery(WALLPAPER_QUERY,{
     variables: {
-      limit: 1
+      limit: 9
     },
   });
 
