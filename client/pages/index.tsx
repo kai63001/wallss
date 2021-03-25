@@ -4,9 +4,8 @@ import Image from "next/image";
 import styles from "../styles/Home.module.sass";
 import Link from "next/link";
 import Collection from "../components/card/Collection";
-import gql from 'graphql-tag';
-import { useQuery,useMutation } from '@apollo/react-hooks';
-
+import gql from "graphql-tag";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 
 // const JOBS_QUERY = gql`
 //   mutation AddWallpaper($image: String!) {
@@ -17,23 +16,23 @@ import { useQuery,useMutation } from '@apollo/react-hooks';
 // `;
 
 const WALLPAPER_QUERY = gql`
-    query Wallpaper {
-      wallpapers{
-        _id,
-        image
-      }
+  query Wallpaper {
+    wallpapers {
+      _id
+      image
     }
+  }
 `;
 
 export default function Home() {
-  // if (typeof window !== 'undefined') { 
+  // if (typeof window !== 'undefined') {
   //   localStorage.setItem("user","barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ5ZWQ1Nzc3ZDViYzAwNTJjN2E0MmYiLCJuYW1lIjoicm9tZW8iLCJpYXQiOjE2MTU0NTgzNDQsImV4cCI6MTYxNjA2MzE0NH0.wSu4JKcTWW7X7-maalYzwK02p43UDVVLW4NMY9zMoGQ")
   // }
   // const [addTodo, { data }] = useMutation(JOBS_QUERY);
   // let input;
-  const {data,loading ,error} = useQuery(WALLPAPER_QUERY,{
+  const { data, loading, error } = useQuery(WALLPAPER_QUERY, {
     variables: {
-      limit: 9
+      limit: 9,
     },
   });
 
@@ -44,7 +43,7 @@ export default function Home() {
   if (error) {
     return <p>Error: {JSON.stringify(error)}</p>;
   }
-  console.log(data)
+  console.log(data);
   const image = [
     "https://images4.alphacoders.com/113/1133943.png",
     "https://images.alphacoders.com/113/1133684.jpg",
@@ -175,8 +174,10 @@ export default function Home() {
           <div className={styles.centerMain}>
             <div className={styles.details}>
               <h2>Keywords trending this week</h2>
-              {[...Array(15)].map((d,i)=>(
-                <span key={i} className={styles.keyword}>Naruto</span>
+              {[...Array(15)].map((d, i) => (
+                <span key={i} className={styles.keyword}>
+                  Naruto
+                </span>
               ))}
             </div>
           </div>
@@ -243,14 +244,16 @@ export default function Home() {
               <Link href={`/image/${d._id}`}>
                 <a>
                   <Image
-                  className="imageRadius"
-                  src={d.image}
-                  alt="Picture of the author"
-                  width={500}
-                  height={300}
-                  quality={100}
-                  layout="intrinsic"
-                />
+                    className="imageRadius"
+                    src={d.image}
+                    alt="Picture of the author"
+                    width={500}
+                    height={300}
+                    quality={100}
+                    objectFit="cover"
+                    objectPosition="center center"
+                    layout="intrinsic"
+                  />
                 </a>
               </Link>
             </div>
@@ -268,4 +271,3 @@ export default function Home() {
     </Layout>
   );
 }
-

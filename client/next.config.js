@@ -16,7 +16,8 @@ module.exports = {
       "images7.alphacoders.com",
       "images8.alphacoders.com",
       "images9.alphacoders.com",
-      "mfiles.alphacoders.com"
+      "mfiles.alphacoders.com",
+      "avatarfiles.alphacoders.com"
     ],
   },
 };
