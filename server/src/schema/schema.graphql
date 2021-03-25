@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-    addWallpaper(image: String!): Wallpaper
+    addWallpaper(image: String!,name:String): Wallpaper
     login(username: String!,password: String!): AuthData,
     register(username: String!,password: String!,name:String!): User
 }
@@ -19,6 +19,7 @@ type User {
 
 type Wallpaper {
     _id: ID!
+    name: String
     image: String!
     user: User,
     date: String

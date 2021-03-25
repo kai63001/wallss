@@ -4,6 +4,9 @@ const WallpaperSchema = new mongoose.Schema({
     resolution: {
         type: String,
     },
+    name: {
+        type: String,
+    },
     image: {
         type: String,
         required: true

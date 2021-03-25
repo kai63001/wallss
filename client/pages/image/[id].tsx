@@ -9,6 +9,7 @@ const WALLPAPER_QUERY = gql`
   query Wallpaper($_id: ID!) {
     wallpaper(_id: $_id) {
       image
+      name
       user {
         name
       }
