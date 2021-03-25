@@ -29,9 +29,20 @@ const Navbar = (props) => {
               <a className="dark-btn">Create Account</a>
             </Link>
           ) : (
-            <Link href="/">
-              <a className="dark-btn">{veriftToken().name}</a>
-            </Link>
+            <div className="dropdown">
+              <div className="dropbtn">{veriftToken().name}</div>
+              <div className="dropdown-content">
+                <Link href="/">
+                  <a>Edit account</a>
+                </Link>
+                <Link href="/">
+                  <a>My favorites</a>
+                </Link>
+                <Link href="/">
+                  <a>Logout</a>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       </div>

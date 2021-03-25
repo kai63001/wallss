@@ -183,3 +183,49 @@ main
 
 .color-main
   color: $primary-color
+
+.dropbtn
+  background: #222222dd
+  color: white
+  width: 100%
+  padding: 10px 0px
+  text-align: center
+  display: inline-block
+  text-decoration: none
+  border-radius: 5px
+  margin-left: -5px
+  white-space: nowrap !important
+  cursor: pointer
+
+.dropdown
+  width: 90%
+  position: relative
+  display: inline-block
+
+.dropdown-content
+  border-radius: 5px
+  display: none
+  position: absolute
+  background-color: #ffffff
+  right: 5px
+  min-width: 160px
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+  z-index: 1
+
+.dropdown-content a
+  color: black
+  padding: 6px 26px
+  text-decoration: none
+  display: block
+
+.dropdown-content a:hover 
+  background-color: #ddd
+
+.dropdown:hover .dropdown-content 
+  display: block
+  transition: .5s
+
+.dropdown:hover .dropbtn 
+  background-color: #0f0f0f
+  transition: .5s
+  border-radius: 5px 5px 0px 5px
