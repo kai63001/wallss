@@ -1,7 +1,5 @@
 import jwt from "jsonwebtoken";
-import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { truncateSync } from "fs";
 
 const SECRET = process.env.SECRET || "shadow";
 
@@ -21,7 +19,6 @@ export const login = (jwt: String) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("user", `barer ${jwt}`);
   }
-
   return "success";
 };
 
@@ -43,7 +40,6 @@ export const veriftToken = () => {
 export const logout = () => {
   if (typeof window !== "undefined") {
     localStorage.removeItem('user')
-
     return "success"
   }
   return null
