@@ -39,3 +39,12 @@ export const veriftToken = () => {
     return null;
   }
 };
+
+export const logout = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem('user')
+
+    return "success"
+  }
+  return null
+}

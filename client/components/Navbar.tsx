@@ -38,7 +38,7 @@ const Navbar = (props) => {
                 <Link href="/">
                   <a>My favorites</a>
                 </Link>
-                <Link href="/">
+                <Link href="/auth/logout">
                   <a>Logout</a>
                 </Link>
               </div>
