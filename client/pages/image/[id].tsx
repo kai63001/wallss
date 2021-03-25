@@ -61,7 +61,9 @@ const ImageWall = () => {
             </div>
           </div>
           {/* Download and Share */}
-          <div className="">Download</div>
+          <div className={styles.rightDetail}>
+            <div className="main-btn pointer"><i className="fas fa-download"></i> Download </div>
+          </div>
         </div>
         {/* IMAGE WALLPAPER */}
         <Image
@@ -70,7 +72,7 @@ const ImageWall = () => {
           alt={`Wallpaper ID: ${id}`}
           title={`Wallpaper ID: ${id}`}
           width={2000}
-          height={1000}
+          height={1200}
           quality={100}
           objectFit="cover"
           objectPosition="center center"
