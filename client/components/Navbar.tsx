@@ -29,7 +29,7 @@ const Navbar = (props) => {
               <a className="dark-btn">Create Account</a>
             </Link>
           ) : (
-            <Link href="/auth/register">
+            <Link href="/">
               <a className="dark-btn">{veriftToken().name}</a>
             </Link>
           )}

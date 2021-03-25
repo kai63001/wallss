@@ -34,8 +34,8 @@ export const veriftToken = () => {
     console.log(jwt.verify(jwtToken.split(" ")[1], SECRET));
     return jwt.verify(jwtToken.split(" ")[1], SECRET);
   } catch (e) {
-    console.log("e:", e);
-    console.log(jwtToken);
+    // console.log("e:", e);
+    // console.log(jwtToken);
     return null;
   }
 };
