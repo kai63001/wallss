@@ -21,7 +21,7 @@ type Wallpaper {
     _id: ID!
     image: String!
     user: User,
-    date: Int
+    date: String
 }
 
 type AuthData {
