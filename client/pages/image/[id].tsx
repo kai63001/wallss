@@ -93,6 +93,12 @@ const ImageWall = () => {
           <a className={styles.tags}>romeo</a>
         </Link>
         <br />
+        <div className={styles.comment}>
+          <h2>Comments</h2>
+          <div className={styles.boxComment}>
+            asd
+          </div>
+        </div>
         <br />
       </div>
     </Layout>
