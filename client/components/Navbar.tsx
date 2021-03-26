@@ -18,9 +18,9 @@ const Navbar = (props) => {
         </div>
         <div className="rightMenu">
         <div className={""}>
-            <button onClick={() => props.theme()} className="dark-btn">
+            <span onClick={() => props.theme()} className="dark-btn-moon">
               <i className="fas fa-moon"></i>
-            </button>
+            </span>
         </div>
         <div className={""}>
           <Link href="/upload">
