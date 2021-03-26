@@ -38,6 +38,10 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.text};
   }
 
+  .box {
+    background-color: ${({ theme }) => theme.navbar};
+  }
+
   .navbar {
     background-color: ${({ theme }) => theme.navbar};
     

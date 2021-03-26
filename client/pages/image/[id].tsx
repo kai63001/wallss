@@ -95,7 +95,7 @@ const ImageWall = () => {
         <br />
         <div className={styles.comment}>
           <h2>Comments</h2>
-          <div className={styles.boxComment}>
+          <div className="box">
             asd
           </div>
         </div>
