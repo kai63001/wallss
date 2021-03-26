@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       console.log('setTheme')
     }
     console.log(theme)
-
+ 
   };
   return (
     <ThemeProvider theme={theme == 'light' ? lightTheme : darkTheme}>

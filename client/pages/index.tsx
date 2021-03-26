@@ -7,14 +7,6 @@ import Collection from "@/components/card/Collection";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
-// const JOBS_QUERY = gql`
-//   mutation AddWallpaper($image: String!) {
-//     addWallpaper(image: $image){
-//       image
-//     }
-//   }
-// `;
-
 const WALLPAPER_QUERY = gql`
   query Wallpaper {
     wallpapers {
@@ -25,11 +17,6 @@ const WALLPAPER_QUERY = gql`
 `;
 
 export default function Home() {
-  // if (typeof window !== 'undefined') {
-  //   localStorage.setItem("user","barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ5ZWQ1Nzc3ZDViYzAwNTJjN2E0MmYiLCJuYW1lIjoicm9tZW8iLCJpYXQiOjE2MTU0NTgzNDQsImV4cCI6MTYxNjA2MzE0NH0.wSu4JKcTWW7X7-maalYzwK02p43UDVVLW4NMY9zMoGQ")
-  // }
-  // const [addTodo, { data }] = useMutation(JOBS_QUERY);
-  // let input;
   const { data, loading, error } = useQuery(WALLPAPER_QUERY, {
     variables: {
       limit: 9,
@@ -51,22 +38,6 @@ export default function Home() {
   ];
   return (
     <Layout>
-      {/* <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          addTodo({ variables: { image: input.value } });
-          input.value = '';
-        }}
-      >
-        <input
-          ref={node => {
-            input = node;
-          }}
-        />
-        <button type="submit">Add Todo</button>
-      </form>
-    </div> */}
       <div className="main2">
         <div className="container">
           {image.map((i, key) => {
