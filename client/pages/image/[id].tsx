@@ -2,8 +2,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "graphql-tag";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Layout from "../../components/Layout";
-import styles from "../../styles/Wallpaper.module.sass";
+import Layout from "@/components/Layout";
+import styles from "@/styles/Wallpaper.module.sass";
 
 const WALLPAPER_QUERY = gql`
   query Wallpaper($_id: ID!) {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../styles/Collectin.module.sass";
+import styles from "@/styles/Collectin.module.sass";
 
 const Collection = (props) => (
   <Link href="/">

@@ -1,7 +1,7 @@
-import Layout from "../../components/Layout";
+import Layout from "@/components/Layout";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../styles/Register.module.sass";
+import styles from "@/styles/Register.module.sass";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { useState } from "react";

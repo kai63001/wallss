@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import Image from "next/image";
-import styles from "../styles/Home.module.sass";
+import styles from "@/styles/Home.module.sass";
 import Link from "next/link";
-import Collection from "../components/card/Collection";
+import Collection from "@/components/card/Collection";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
