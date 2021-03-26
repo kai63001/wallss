@@ -19,7 +19,8 @@ const Collection = (props) => (
           <span className={styles.name}>HAHA</span>
         </div>
         <div className={styles.love}>
-          <i className={"far fa-heart " + styles.iconLove}></i> 10
+          <i className={"far fa-heart " + styles.iconLove}></i> 
+          <span> 20</span>
         </div>
       </div>
       <div className={styles.inBody}>
