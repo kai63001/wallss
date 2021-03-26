@@ -25,7 +25,6 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={theme == 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <Navbar theme={toggleTheme}/>
-      <button onClick={toggleTheme}>Switch Theme</button>
       <Component/>
     </ThemeProvider>
   );
