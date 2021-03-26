@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "graphql-tag";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Wallpaper.module.sass";
 
@@ -56,13 +57,19 @@ const ImageWall = () => {
               />
             </div>
             <div className={styles.nameProfile}>
-              <h1 className={styles.nameWall}>{data.wallpaper.name || "Wallss"}</h1>
-              <span className={styles.uploadBy}>by {data.wallpaper.user.name.toUpperCase()}</span>
+              <h1 className={styles.nameWall}>
+                {data.wallpaper.name || "Wallss"}
+              </h1>
+              <span className={styles.uploadBy}>
+                by {data.wallpaper.user.name.toUpperCase()}
+              </span>
             </div>
           </div>
           {/* Download and Share */}
           <div className={styles.rightDetail}>
-            <div className="main-btn pointer"><i className="fas fa-download"></i> Download </div>
+            <div className="main-btn pointer">
+              <i className="fas fa-download"></i> Download{" "}
+            </div>
           </div>
         </div>
         {/* IMAGE WALLPAPER */}
@@ -78,6 +85,15 @@ const ImageWall = () => {
           objectPosition="center center"
           layout="intrinsic"
         />
+        <br />
+        <Link href="/">
+          <a className={styles.tags}>romeo</a>
+        </Link>
+        <Link href="/">
+          <a className={styles.tags}>romeo</a>
+        </Link>
+        <br />
+        <br />
       </div>
     </Layout>
   );
