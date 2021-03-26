@@ -29,8 +29,11 @@ a
   text-decoration: none
 
 .main
-  max-width: 1290px
+  max-width: 1260px
+  padding-right: 35px
   margin: auto
+  display: flex
+  justify-content: space-between
 
 main
   min-height: 92%
@@ -70,11 +73,11 @@ main
     -webkit-text-fill-color: transparent
 
   .search
-    grid-column: span 8
     margin-top: -5px
     margin-left: 5%
+    width: 80%
     .searchinput
-      width: 93%
+      width: 90%
       border: none
       padding: 9px 30px
       font-size: 17px
@@ -83,33 +86,23 @@ main
       border-radius: 5px
       outline: none
       font-family: 'Fredoka One', cursive !important
-    // padding-top: 5px
-  .rightOne
-    grid-column: span 1
-    padding-top: 5px
-
-  .right
-    grid-column: span 2
-    margin-top: -5px
-    // text-align: right
-    // padding-right: 15px
+  .rightMenu
+    display: inline-flex
+    margin-top: 5px
+    
   @media only screen and  (max-width: 768px)
     .search
       display: none
-    .rightOne
-      margin-left: 0%
-      grid-column: span 10
-      text-align: right
-    .right
+    .createAccount
       display: none
-      margin-left: 0%
-      grid-column: span 10
+    
 
 .main-btn
   background: rgb(237,23,134)
   background: linear-gradient(100deg, rgba(237,23,134,1) 25%, rgba(251,94,58,1) 100%)
   color: white
   padding: 10px 20px
+  margin-left: 5px
   text-decoration: none
   border-radius: 5px
   white-space: nowrap !important
@@ -141,13 +134,11 @@ main
 .dark-btn
   background: #222222dd
   color: white
-  width: 90%
-  padding: 10px 0px
+  padding: 10px 20px
   text-align: center
-  display: inline-block
   text-decoration: none
   border-radius: 5px
-  margin-left: -5px
+  margin-left: 5px
   white-space: nowrap !important
 
 .imageRadius

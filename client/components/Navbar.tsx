@@ -5,7 +5,7 @@ import { veriftToken } from "../middleware/auth.middleware";
 const Navbar = (props) => {
   return (
     <nav className="navbar">
-      <div className={"container main"}>
+      <div className={"main"}>
         <div className={"logo"}>
           <Link href="/">
             <a>WALLSS</a>
@@ -16,14 +16,22 @@ const Navbar = (props) => {
             <input type="text" className="searchinput" placeholder="Search.." />
           </form>
         </div>
-        <div className={"rightOne"}>
+        <div className="rightMenu">
+        <div className={""}>
+          <Link href="/upload">
+            <a className="dark-btn">
+              <i className="fas fa-moon"></i>
+            </a>
+          </Link>
+        </div>
+        <div className={""}>
           <Link href="/upload">
             <a className="main-btn">
               <i className="fas fa-upload"></i> Upload
             </a>
           </Link>
         </div>
-        <div className={"right"}>
+        <div className={"createAccount"}>
           {veriftToken() == null ? (
             <Link href="/auth/register">
               <a className="dark-btn">Create Account</a>
@@ -44,6 +52,7 @@ const Navbar = (props) => {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
     </nav>
