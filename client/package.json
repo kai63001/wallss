@@ -23,13 +23,20 @@
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "next": "10.0.7",
+    "next-redux-wrapper": "^6.0.2",
     "next-seo": "^4.20.0",
     "next-with-apollo": "^5.1.1",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-cookie": "^4.0.3",
     "react-dom": "17.0.1",
-    "sass": "^1.32.8"
+    "react-redux": "^7.2.3",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.32.8",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",

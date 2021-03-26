@@ -1,7 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 const Header = dynamic(import("./Header"));
-const Navbar = dynamic(import("./Navbar"));
 const Footer = dynamic(import("./Footer"));
 
 const Layout = (props) => (
@@ -21,7 +20,6 @@ const Layout = (props) => (
       can={props.can}
       image={props.image}
     />
-    <Navbar />
     <main>
       <br />
       <br />
