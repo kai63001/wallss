@@ -97,7 +97,7 @@ const ImageWall = () => {
         <div className={styles.comment}>
           <h2>Comments</h2>
           <div className="box">
-            <textarea name="" id="" className={styles.textarea} spellCheck="false" cols={100} rows={5} placeholder="Comment.." ></textarea>
+            <textarea name="" id="" className={styles.textarea + " inputColor"} spellCheck="false" cols={100} rows={5} placeholder="Comment.." ></textarea>
             <br/>
 						<button className={styles.leaveComment}>Leave Comment</button>
             <div className="clearfix"></div>

@@ -6,6 +6,7 @@ export const lightTheme = {
   navbar: "white",
   toggleBorder: "#FFF",
   background: "#222222dd",
+  input: "#f0f0f0dd",
 };
 
 export const darkTheme = {
@@ -14,6 +15,7 @@ export const darkTheme = {
   navbar: "black",
   toggleBorder: "#6B8096",
   background: "#222222dd",
+  input: "#202020",
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -21,6 +23,12 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
+  }
+
+  .inputColor {
+    background: ${({ theme }) => theme.input};
+    color: ${({ theme }) => theme.text};
+    
   }
 
   .inboxColor {
