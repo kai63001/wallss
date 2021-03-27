@@ -99,7 +99,7 @@ const ImageWall = () => {
           <div className="box">
             <textarea name="" id="" className={styles.textarea + " inputColor"} spellCheck="false" cols={100} rows={5} placeholder="Comment.." ></textarea>
             <br/>
-						<button className={styles.leaveComment}>Leave Comment</button>
+						<button className={styles.leaveComment + " pointer"}>Leave Comment</button>
             <div className="clearfix"></div>
           </div>
         </div>
