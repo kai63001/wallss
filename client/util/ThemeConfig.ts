@@ -23,6 +23,9 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 0.50s linear;
   }
 
+  .inboxColor {
+    background: ${({ theme }) => theme.navbar};
+  }
   span {
     color: ${({ theme }) => theme.text};
 
