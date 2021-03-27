@@ -36,7 +36,7 @@ const Navbar = (props) => {
             </Link>
           ) : (
             <div className="dropdown">
-              <div className="dropbtn">{veriftToken().name.charAt(0).toUpperCase()+veriftToken().name.slice(1)}</div>
+              <div className="dark-btn">{veriftToken().name.charAt(0).toUpperCase()+veriftToken().name.slice(1)}</div>
               <div className="dropdown-content">
                 <Link href="/">
                   <a>Edit account</a>

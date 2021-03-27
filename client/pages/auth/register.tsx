@@ -67,7 +67,7 @@ const Register = () => {
               objectPosition="bottom center"
             />
           </div>
-          <div className={styles.mainContent}>
+          <div className={styles.mainContent + " inboxColor"}>
             <h1 className="p-0 m-0">Create an account</h1>
             Already have an account?{" "}
             <Link href="/auth/login">

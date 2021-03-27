@@ -28,7 +28,6 @@ export const veriftToken = () => {
     jwtToken = localStorage.getItem("user");
   }
   try {
-    console.log(jwt.verify(jwtToken.split(" ")[1], SECRET));
     return jwt.verify(jwtToken.split(" ")[1], SECRET);
   } catch (e) {
     // console.log("e:", e);

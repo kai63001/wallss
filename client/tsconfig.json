@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/middleware/*": ["middleware/*"],
       "@/styles/*": ["styles/*"]
     },
     "target": "es5",

@@ -41,7 +41,7 @@ const Register = () => {
               objectPosition="center center"
             />
           </div>
-          <div className={styles.mainContent}>
+          <div className={styles.mainContent + " inboxColor"}>
             <h1 className="p-0 m-0">Sign Into Wallss Community</h1>
             Don't have an account yet?
             <Link href="/auth/register">
