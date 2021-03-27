@@ -35,7 +35,7 @@ const Navbar = (props) => {
               <a className="dark-btn">Create Account</a>
             </Link>
           ) : (
-            <div className="dropdown">
+            <div className="dropdown pointer">
               <div className="dark-btn">{veriftToken().name.charAt(0).toUpperCase()+veriftToken().name.slice(1)}</div>
               <div className="dropdown-content">
                 <Link href="/">
