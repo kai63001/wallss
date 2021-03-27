@@ -5,13 +5,18 @@ import { useEffect } from "react";
 
 const upload = () => {
   const router = useRouter();
-  useEffect(()=>{
+  useEffect(() => {
     if (veriftToken() == null) {
-        router.push('/auth/login');
+      router.push("/auth/login");
     }
-  })
+  });
+
+  if (veriftToken() == null) {
+    return <Layout></Layout>;
+  }
 
   return <Layout>asdasdsa</Layout>;
+
 };
 
 export default upload;
