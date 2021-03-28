@@ -27,6 +27,10 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 0.50s linear;
   }
 
+  .tagColor {
+    background-color: ${({ theme }) => theme.button};
+  }
+
   .dark-btn {
     background-color: ${({ theme }) => theme.button};
   }

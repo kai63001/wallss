@@ -88,10 +88,10 @@ const ImageWall = () => {
         />
         <br />
         <Link href="/">
-          <a className={styles.tags}>romeo</a>
+          <a className={styles.tags + " tagColor"}>romeo</a>
         </Link>
         <Link href="/">
-          <a className={styles.tags}>romeo</a>
+          <a className={styles.tags + " tagColor"}>romeo</a>
         </Link>
         <br />
         <div className={styles.comment}>
@@ -99,7 +99,7 @@ const ImageWall = () => {
           <div className="box">
             <textarea name="" id="" className={styles.textarea + " inputColor"} spellCheck="false" cols={100} rows={5} placeholder="Comment.." ></textarea>
             <br/>
-						<button className={styles.leaveComment + " pointer"}>Leave Comment</button>
+						<button className={styles.leaveComment + " pointer tagColor"}>Leave Comment</button>
             <div className="clearfix"></div>
           </div>
         </div>
