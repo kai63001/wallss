@@ -7,15 +7,17 @@ export const lightTheme = {
   toggleBorder: "#FFF",
   background: "#222222dd",
   input: "#f0f0f0dd",
+  button: "#222222dd"
 };
 
 export const darkTheme = {
-  body: "#0a0a0a",
+  body: "#212121",
   text: "#FAFAFA",
-  navbar: "black",
+  navbar: '#181818',
   toggleBorder: "#6B8096",
   background: "#222222dd",
   input: "#202020",
+  button: "black"
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -23,6 +25,10 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
+  }
+
+  .dark-btn {
+    background-color: ${({ theme }) => theme.button};
   }
 
   .inputColor {
