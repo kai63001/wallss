@@ -2,31 +2,44 @@ import Layout from "@/components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/Register.module.sass";
-import { login,LOGIN_QUERY } from "../../middleware/auth.middleware";
+import { login, LOGIN_QUERY } from "../../middleware/auth.middleware";
 import { useMutation } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Register = () => {
-  const router = useRouter()
-  const [loginMutation, {loading,error}] = useMutation(LOGIN_QUERY)
-  const letLogin = async e => {
-    e.preventDefault()
-    loginMutation({variables:{
-      username:e.target.username.value,
-      password:e.target.password.value,
-    }}).then(async res => {
-      console.log(res.data.login.jwt)
-      const getLogin = await login(res.data.login.jwt)
-      if(getLogin == "success"){
-        router.push('/')
-      }
-    }).catch(error => {
-      if(error == "Error: User not found")
-        console.log("Error: User not found")
+  const router = useRouter();
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [loginMutation, { loading, error }] = useMutation(LOGIN_QUERY);
+  const letLogin = async (e) => {
+    e.preventDefault();
+    loginMutation({
+      variables: {
+        username: username,
+        password: password,
+      },
     })
+      .then(async (res) => {
+        console.log(res.data.login.jwt);
+        const getLogin = await login(res.data.login.jwt);
+        if (getLogin == "success") {
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        if (error == "Error: User not found") {
+          console.log("Error: User not found");
+          e.target.username.setCustomValidity("Incorrect username or password. Please try again");
+          e.target.password.setCustomValidity("Incorrect username or password. Please try again");
+        }
+      })
+      .finally(() => {
+        console.log("hahaha");
+      });
 
     // console.log(login(e.target.username.value,e.target.password.value,true))
-  }
+  };
   return (
     <Layout title="Sign Into Wallss Community">
       <div className={styles.middle}>
@@ -60,10 +73,14 @@ const Register = () => {
                 className="main-input"
                 type="text"
                 placeholder="wallss"
+                onChange={(e) => {
+                  setUsername(e.target.value)
+                  e.target.setCustomValidity('')
+                }}
                 required
               />
               <br />
-              
+
               <label className="main-label" htmlFor="password">
                 Password :
               </label>
@@ -74,13 +91,15 @@ const Register = () => {
                 className="main-input"
                 type="password"
                 placeholder="wallPass@1234"
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  e.target.setCustomValidity('')
+                }}
                 required
               />
-              
+
               <input type="checkbox" name="remember" id="remember" />
-              <label htmlFor="remember">
-                 Remember me
-              </label>
+              <label htmlFor="remember">Remember me</label>
               <br />
               <br />
               <input
