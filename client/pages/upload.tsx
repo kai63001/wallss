@@ -1,16 +1,33 @@
 import Layout from "@/components/Layout";
 import { veriftToken } from "@/middleware/auth.middleware";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/Upload.module.sass";
 
 const upload = () => {
   const router = useRouter();
+  const [image, setImage] = useState([]);
   useEffect(() => {
+    console.log("check");
     if (veriftToken() == null) {
       router.push("/auth/login");
     }
   });
+
+  const uploadImage = (e) => {
+    const file = e.target.files || e.dataTransfer.files
+    console.log(file[0])
+    console.log(e.target.value)
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log(e.target.result)
+      setImage([...image,e.target.result])
+    }
+    reader.readAsDataURL(file[0])
+    
+  };
+
+
 
   if (veriftToken() == null) {
     return <Layout></Layout>;
@@ -36,6 +53,13 @@ const upload = () => {
             <li>No screenshots</li>
             <li>No offensive images</li>
           </ul>
+          <br />
+          {image.map((e,i)=>(
+            <div key={i}>
+              <img src={e} width="100%" alt=""/>
+            </div>
+          ))}
+          <input type="file" className={styles.uploadBTN} onChange={uploadImage}/>
         </div>
       </div>
     </Layout>
