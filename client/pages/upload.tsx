@@ -72,12 +72,20 @@ const upload = () => {
               <img src={e.base64} width="100%" alt="" />
             </div>
           ))}
+          <br/>
+          <label htmlFor="file" className="dark-btn">
+            Upload Wallpaper
+          </label>
           <input
+            id="file"
+            name="file"
             type="file"
             className={styles.uploadBTN}
             onChange={uploadImage}
             multiple={true}
           />
+          <br/>
+          <br/>
         </div>
       </div>
       <br />
