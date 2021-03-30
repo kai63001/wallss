@@ -15,19 +15,32 @@ const upload = () => {
   });
 
   const uploadImage = (e) => {
-    const file = e.target.files || e.dataTransfer.files
-    console.log(file[0])
-    console.log(e.target.value)
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      console.log(e.target.result)
-      setImage([...image,e.target.result])
+    const files = e.target.files || e.dataTransfer.files;
+    console.log(files.length);
+    console.log(e.target.value);
+    const readAndPreview = (file) => {
+      console.log("readANdPrv")
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        console.log(e.target.result);
+        setImage(image => [
+          ...image,
+          {
+            base64: e.target.result,
+            name: "",
+            tags: "",
+          }
+        ]);
+      };
+      reader.readAsDataURL(file)
+    };
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        readAndPreview(files[i]);
+      }
     }
-    reader.readAsDataURL(file[0])
-    
+
   };
-
-
 
   if (veriftToken() == null) {
     return <Layout></Layout>;
@@ -54,14 +67,21 @@ const upload = () => {
             <li>No offensive images</li>
           </ul>
           <br />
-          {image.map((e,i)=>(
+          {image.map((e, i) => (
             <div key={i}>
-              <img src={e} width="100%" alt=""/>
+              <img src={e.base64} width="100%" alt="" />
             </div>
           ))}
-          <input type="file" className={styles.uploadBTN} onChange={uploadImage}/>
+          <input
+            type="file"
+            className={styles.uploadBTN}
+            onChange={uploadImage}
+            multiple={true}
+          />
         </div>
       </div>
+      <br />
+      <br />
     </Layout>
   );
 };
