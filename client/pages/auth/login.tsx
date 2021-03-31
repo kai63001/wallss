@@ -9,9 +9,13 @@ import { useState } from "react";
 
 const Register = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
   const [loginMutation, { loading, error }] = useMutation(LOGIN_QUERY);
+  const fixBugValidate = (e) => {
+    setErrorLogin(false);
+  };
   const letLogin = async (e) => {
     e.preventDefault();
     loginMutation({
@@ -30,15 +34,12 @@ const Register = () => {
       .catch((error) => {
         if (error == "Error: User not found") {
           console.log("Error: User not found");
-          e.target.username.setCustomValidity("Incorrect username or password. Please try again");
-          e.target.password.setCustomValidity("Incorrect username or password. Please try again");
+          setErrorLogin(true)
         }
       })
       .finally(() => {
         console.log("hahaha");
       });
-
-    // console.log(login(e.target.username.value,e.target.password.value,true))
   };
   return (
     <Layout title="Sign Into Wallss Community">
@@ -63,6 +64,14 @@ const Register = () => {
             <br />
             <br />
             <form onSubmit={letLogin}>
+              {errorLogin ? (
+                <span className="color-main">
+                  Incorrect username or password. Please try again.
+                  <br />
+                </span>
+              ) : (
+                ""
+              )}
               <label className="main-label" htmlFor="username">
                 Username :
               </label>
@@ -74,8 +83,8 @@ const Register = () => {
                 type="text"
                 placeholder="wallss"
                 onChange={(e) => {
-                  setUsername(e.target.value)
-                  e.target.setCustomValidity('')
+                  setUsername(e.target.value);
+                  fixBugValidate(e);
                 }}
                 required
               />
@@ -92,8 +101,8 @@ const Register = () => {
                 type="password"
                 placeholder="wallPass@1234"
                 onChange={(e) => {
-                  setPassword(e.target.value)
-                  e.target.setCustomValidity('')
+                  setPassword(e.target.value);
+                  fixBugValidate(e);
                 }}
                 required
               />
