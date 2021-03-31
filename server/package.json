@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -p . && node dist/main.js",
+    "start": "tsc -p . && node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/main.js",
     "dev": "nodemon -e ts,js --exec ts-node -r tsconfig-paths/register ./src/main.ts",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
