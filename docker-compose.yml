@@ -14,10 +14,10 @@ services:
     restart: always
     ports:
       - 27017:27017
-      # ควร 4 ชมกู
+      # ควย 4 ชมกู
     command: --auth
     volumes:
-      - data:/data/db
+      - MONGO_DATABASEta:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     # environment:
     #   MONGO_INITDB_ROOT_USERNAME: root
