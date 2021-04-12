@@ -36,8 +36,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .inputColor {
-    background: ${({ theme }) => theme.input};
-    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.input} !important;
+    color: ${({ theme }) => theme.text} !important;
     transition: all 0.50s linear;
   }
 

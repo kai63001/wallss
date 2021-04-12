@@ -79,7 +79,7 @@ const Register = () => {
               <input
                 id="username"
                 name="username"
-                className="main-input"
+                className="main-input inputColor"
                 type="text"
                 placeholder="wallss"
                 onChange={(e) => {
@@ -97,7 +97,7 @@ const Register = () => {
               <input
                 id="password"
                 name="password"
-                className="main-input"
+                className="main-input inputColor"
                 type="password"
                 placeholder="wallPass@1234"
                 onChange={(e) => {

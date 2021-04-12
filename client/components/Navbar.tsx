@@ -13,7 +13,7 @@ const Navbar = (props) => {
         </div>
         <div className={"search"}>
           <form action="" method="get">
-            <input type="text" className="searchinput" placeholder="Search.." />
+            <input type="text" className="searchinput inputColor" placeholder="Search.." />
           </form>
         </div>
         <div className="rightMenu">
