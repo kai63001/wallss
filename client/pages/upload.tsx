@@ -26,7 +26,14 @@ const upload = () => {
         });
     };
 
+    const checkTypeImage = (type: string) => {
+        const support = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+        if (support.includes(type)) return true;
+        return false;
+    };
+
     const uploadImage = (e) => {
+        setErrorFile(false);
         const files = e.target.files || e.dataTransfer.files;
         console.log(files.length);
         console.log(e.target.value);
@@ -49,15 +56,21 @@ const upload = () => {
         let data = dataInput;
         if (files) {
             for (let i = 0; i < files.length; i++) {
-                readAndPreview(files[i]);
-                data = {
-                    ...data,
-                    ['name_' + count]: 'romeoo',
-                    ['tags_' + count]: 'romeoo',
-                };
+                console.log('🚀 type image : ' + checkTypeImage(files[i].type));
+                if (checkTypeImage(files[i].type)) {
+                    readAndPreview(files[i]);
+                    data = {
+                        ...data,
+                        ['name_' + count]: 'romeoo',
+                        ['tags_' + count]: 'romeoo',
+                    };
 
-                count += 1;
-                console.log(dataInput);
+                    count += 1;
+                    console.log(dataInput);
+                } else {
+                    setErrorFile(true);
+                    console.log('😞 error file');
+                }
             }
             setDataInput(data);
             setCountUpload(count);
@@ -93,7 +106,7 @@ const upload = () => {
                     </ul>
                     <br />
                     {image.map((e, i) => (
-                        <div key={i} className={'container'}>
+                        <div key={i} className={'container ' + styles.uploadImage}>
                             <div className={styles.images}>
                                 <img src={e.base64} className='imageRadius wallpaperLoading' width='100%' alt='' />
                             </div>
@@ -116,7 +129,7 @@ const upload = () => {
                         </div>
                     ))}
                     <br />
-                    {errorFile ? <p className='text-error'>Error: Support only png, jpg, jpeg, gif</p> : ''}
+                    {errorFile == true ? <p className='text-error'>Error: Support only png, jpg, jpeg, gif</p> : ''}
                     <br />
                     <div className={styles.spaceBTW}>
                         <div>
