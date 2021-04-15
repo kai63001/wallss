@@ -8,7 +8,7 @@ import styles from '@/styles/Upload.module.sass';
 const upload = () => {
     const router = useRouter();
     const [image, setImage] = useState([]);
-    const [countUpload, setCountUpload] = useState(0)
+    const [countUpload, setCountUpload] = useState(0);
     const [dataInput, setDataInput] = useState({});
     const [errorFile, setErrorFile] = useState(false);
     useEffect(() => {
@@ -46,20 +46,20 @@ const upload = () => {
             reader.readAsDataURL(file);
         };
         let count = countUpload;
-        let data = dataInput
+        let data = dataInput;
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 readAndPreview(files[i]);
                 data = {
                     ...data,
-                    ['name_'+count]: 'romeoo',
-                    ['tags_'+count]: 'romeoo',
-                }
-                
-                count += 1
-                console.log(dataInput)
+                    ['name_' + count]: 'romeoo',
+                    ['tags_' + count]: 'romeoo',
+                };
+
+                count += 1;
+                console.log(dataInput);
             }
-            setDataInput(data)
+            setDataInput(data);
             setCountUpload(count);
         }
     };
@@ -116,7 +116,7 @@ const upload = () => {
                         </div>
                     ))}
                     <br />
-                    <p className='text-error'>Error: Support only png, jpg, jpeg, gif</p>
+                    {errorFile ? <p className='text-error'>Error: Support only png, jpg, jpeg, gif</p> : ''}
                     <br />
                     <div className={styles.spaceBTW}>
                         <div>
@@ -134,7 +134,7 @@ const upload = () => {
                         </div>
                         <div className={styles.inBTW}>
                             {image.length > 0 ? (
-                                <div onClick={()=>(console.log(dataInput))} className='main-btn m-0'>
+                                <div onClick={() => console.log(dataInput)} className='main-btn m-0'>
                                     Done
                                 </div>
                             ) : (
