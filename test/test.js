@@ -1,9 +1,10 @@
 const fs = require('fs');
 const readline = require('readline');
+const async = require('async');
 const { google } = require('googleapis');
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
@@ -13,7 +14,8 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Drive API.
-    authorize(JSON.parse(content), listFiles);
+    // authorize(JSON.parse(content), listFiles);
+    authorize(JSON.parse(content), uploadFile);
 });
 
 /**
@@ -81,8 +83,8 @@ function listFiles(auth) {
             pageSize: 10,
             fields: 'nextPageToken, files(id, name)',
             supportsAllDrives: true,
-            corpora:"drive",
-            includeTeamDriveItems: true
+            corpora: 'drive',
+            includeTeamDriveItems: true,
         },
         (err, res) => {
             if (err) return console.log('The API returned an error: ' + err);
@@ -98,3 +100,75 @@ function listFiles(auth) {
         }
     );
 }
+
+function uploadFile(auth) {
+    const drive = google.drive({ version: 'v3', auth });
+    var fileMetadata = {
+        name: 'romeo.png',
+        driveId: '0AGp3NkK6sayBUk9PVA',
+        teamDriveId: '0AGp3NkK6sayBUk9PVA',
+        parents: ['0AGp3NkK6sayBUk9PVA'],
+    };
+    var media = {
+        mimeType: 'image/png',
+        body: fs.createReadStream('files/image2.png'),
+    };
+    drive.files.create(
+        {
+            resource: fileMetadata,
+            media: media,
+            fields: 'id',
+            supportsAllDrives: true,
+        },
+        function (err, file) {
+            if (err) {
+                // Handle error
+                console.error(err);
+            } else {
+                // console.log('File Id: ', 'https://drive.google.com/thumbnail?id=' + file.data.id);
+                var fileId = file.data.id;
+                var permissions = [
+                    {
+                        role: 'reader',
+                        type: 'anyone',
+                    },
+                ];
+                // Using the NPM module 'async'
+                async.eachSeries(
+                    permissions,
+                    function (permission, permissionCallback) {
+                        drive.permissions.create(
+                            {
+                                resource: permission,
+                                fileId: fileId,
+                                fields: 'id',
+                                supportsAllDrives: true,
+                            },
+                            function (err, res) {
+                                if (err) {
+                                    // Handle error...
+                                    console.error(err);
+                                    permissionCallback(err);
+                                } else {
+                                    // console.log('Permission ID: ', res.data.id);
+                                    console.log('File Id: ', 'https://drive.google.com/thumbnail?id=' + file.data.id);
+                                    permissionCallback();
+                                }
+                            }
+                        );
+                    },
+                    function (err) {
+                        if (err) {
+                            // Handle error
+                            console.error(err);
+                        } else {
+                            // All permissions inserted
+                        }
+                    }
+                );
+            }
+        }
+    );
+}
+
+// https://drive.google.com/thumbnail?id=1skWeG2dVKO3ZzhiEj8wFX4xm7T4Fd3nY&sz=w100-h100
