@@ -11,12 +11,7 @@ const upload = () => {
     const [countUpload, setCountUpload] = useState(0);
     const [dataInput, setDataInput] = useState({});
     const [errorFile, setErrorFile] = useState(false);
-    useEffect(() => {
-        console.log('check');
-        if (veriftToken() == null) {
-            router.push('/auth/login');
-        }
-    });
+    console.log('check');
 
     const hanndleOnInputChange = (e) => {
         const { name, value } = e.target;
@@ -80,10 +75,6 @@ const upload = () => {
     const summitUpload = () => {
         console.log(image);
     };
-
-    if (veriftToken() == null) {
-        return <Layout></Layout>;
-    }
 
     return (
         <Layout>
@@ -165,5 +156,21 @@ const upload = () => {
         </Layout>
     );
 };
+
+export async function getServerSideProps(context) {
+    const auth = await veriftToken(context);
+    if (auth == null) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {},
+    };
+}
 
 export default upload;

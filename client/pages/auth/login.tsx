@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/Register.module.sass";
-import { login, LOGIN_QUERY } from "../../middleware/auth.middleware";
+import { login, LOGIN_QUERY,veriftToken } from "../../middleware/auth.middleware";
 import { useMutation } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -28,7 +28,7 @@ const Register = () => {
         console.log(res.data.login.jwt);
         const getLogin = await login(res.data.login.jwt);
         if (getLogin == "success") {
-          router.push("/");
+          router.reload();
         }
       })
       .catch((error) => {
@@ -125,4 +125,21 @@ const Register = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(context) {
+    const auth = await veriftToken(context);
+    if (auth) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {}, // will be passed to the page component as props
+    };
+}
+
 export default Register;
