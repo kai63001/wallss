@@ -147,7 +147,7 @@ const upload = () => {
                         </div>
                         <div className={styles.inBTW}>
                             {image.length > 0 ? (
-                                <div onClick={() => console.log(dataInput)} className='main-btn m-0'>
+                                <div onClick={summitUpload} className='main-btn m-0'>
                                     Done
                                 </div>
                             ) : (
