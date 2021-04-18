@@ -9,11 +9,15 @@ const upload = () => {
     const router = useRouter();
     const [image, setImage] = useState([]);
     const [countUpload, setCountUpload] = useState(0);
+    // input name image and tags
     const [dataInput, setDataInput] = useState({});
+    // error file check
     const [errorFile, setErrorFile] = useState(false);
+    const [errorText, setErrorText] = useState('');
     console.log('check');
 
     const hanndleOnInputChange = (e) => {
+        setErrorFile(false)
         const { name, value } = e.target;
         setDataInput({
             ...dataInput,
@@ -56,14 +60,15 @@ const upload = () => {
                     readAndPreview(files[i]);
                     data = {
                         ...data,
-                        ['name_' + count]: 'romeoo',
-                        ['tags_' + count]: 'romeoo',
+                        ['name_' + count]: '',
+                        ['tags_' + count]: '',
                     };
 
                     count += 1;
                     console.log(dataInput);
                 } else {
                     setErrorFile(true);
+                    setErrorText('Error: Support only png, jpg, jpeg, gif');
                     console.log('😞 error file');
                 }
             }
@@ -73,7 +78,15 @@ const upload = () => {
     };
 
     const summitUpload = () => {
-        console.log(image);
+        for (const [key, value] of Object.entries(dataInput)) {
+            console.log(key, value);
+            if (value == '') {
+                setErrorFile(true);
+                setErrorText('Error: Title or Tags shouldn\'t empty');
+            }
+        }
+        // if(dataInput.map((input,i)=>{input}))
+        // console.log(dataInput[0]);
     };
 
     return (
@@ -106,8 +119,9 @@ const upload = () => {
                                     type='text'
                                     onChange={hanndleOnInputChange}
                                     name={`name_${i}`}
-                                    className='main-input inputColor'
+                                    className={`main-input inputColor`}
                                     placeholder='Title, caption or description'
+                                    required={true}
                                 />
                                 <input
                                     type='text'
@@ -115,12 +129,13 @@ const upload = () => {
                                     name={`tags_${i}`}
                                     className='main-input inputColor'
                                     placeholder='Tags ,separated by comma'
+                                    required={true}
                                 />
                             </div>
                         </div>
                     ))}
                     <br />
-                    {errorFile == true ? <p className='text-error'>Error: Support only png, jpg, jpeg, gif</p> : ''}
+                    {errorFile == true ? <p className='text-error'>{errorText}</p> : ''}
                     <br />
                     <div className={styles.spaceBTW}>
                         <div>

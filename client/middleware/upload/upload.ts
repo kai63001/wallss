@@ -12,12 +12,15 @@ const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Google Drive API.
-    // authorize(JSON.parse(content), listFiles);
-    authorize(JSON.parse(content));
-});
+
+export function upload(img) {
+    fs.readFile('credentials.json', (err, content) => {
+        if (err) return console.log('Error loading client secret file:', err);
+        // Authorize a client with credentials, then call the Google Drive API.
+        // authorize(JSON.parse(content), listFiles);
+        authorize(JSON.parse(content),img);
+    });
+}
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -25,15 +28,15 @@ fs.readFile('credentials.json', (err, content) => {
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
-function authorize(credentials) {
+function authorize(credentials,img) {
     const { client_secret, client_id, redirect_uris } = credentials.web;
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
 
     // Check if we have previously stored a token.
     fs.readFile(TOKEN_PATH, (err, token) => {
-        if (err) return getAccessToken(oAuth2Client, callback);
+        if (err) return getAccessToken(oAuth2Client, uploadFile(oAuth2Client, img));
         oAuth2Client.setCredentials(JSON.parse(token));
-        uploadFile(oAuth2Client, '6666');
+        uploadFile(oAuth2Client, img);
     });
 }
 
@@ -110,7 +113,8 @@ function uploadFile(auth, img) {
 
     // if base on base64
     const uploadImg = img.split(/,(.+)/)[1];
-    const buf = new Buffer.from(uploadImg, 'base64'); // Added
+    const buf = Buffer.from(uploadImg, 'base64'); // Added ~call error cuz new use to void function
+    // const buf = new Buffer.from(uploadImg, 'base64'); // Added
     const bs = new stream.PassThrough(); // Added
     bs.end(buf); // Added
 
