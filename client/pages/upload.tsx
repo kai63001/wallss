@@ -17,7 +17,7 @@ const upload = () => {
     console.log('check');
 
     const hanndleOnInputChange = (e) => {
-        setErrorFile(false)
+        setErrorFile(false);
         const { name, value } = e.target;
         setDataInput({
             ...dataInput,
@@ -78,19 +78,28 @@ const upload = () => {
     };
 
     const summitUpload = () => {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
         for (const [key, value] of Object.entries(dataInput)) {
             console.log(key, value);
             if (value == '') {
                 setErrorFile(true);
-                setErrorText('Error: Title or Tags shouldn\'t empty');
-                return
+                setErrorText("Error: Title or Tags shouldn't empty");
+                return;
             }
         }
-        image.forEach((d,i) => {
-            
-
-        })
-
+        image.forEach(async (d, i) => {
+            const urlencoded = new URLSearchParams();
+            urlencoded.append('img',d.base64)
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: urlencoded,
+            };
+            const data = await fetch('http://localhost:4000/upload', requestOptions);
+            console.log(await data.text());
+        });
     };
 
     return (
@@ -193,3 +202,4 @@ export async function getServerSideProps(context) {
 }
 
 export default upload;
+

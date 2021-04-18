@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import path from "path";
 import getUser from './getUser';
 import {uploadDrive} from './upload/upload.middleware.js';
-
+const cors = require('cors')
 
 
 const connectServer = async () => {
@@ -26,9 +26,12 @@ const connectServer = async () => {
       .toString();
 
     const app: Application = express();
+    app.use(cors())
+
     app.use(
       express.urlencoded({
-        extended: true
+        extended: true,
+        limit: "5mb"
       })
     )
 
