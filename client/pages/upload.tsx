@@ -83,10 +83,14 @@ const upload = () => {
             if (value == '') {
                 setErrorFile(true);
                 setErrorText('Error: Title or Tags shouldn\'t empty');
+                return
             }
         }
-        // if(dataInput.map((input,i)=>{input}))
-        // console.log(dataInput[0]);
+        image.forEach((d,i) => {
+            uploadDrive(d.base64)
+
+        })
+
     };
 
     return (
