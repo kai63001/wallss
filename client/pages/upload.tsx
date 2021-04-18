@@ -87,7 +87,7 @@ const upload = () => {
             }
         }
         image.forEach((d,i) => {
-            uploadDrive(d.base64)
+            
 
         })
 

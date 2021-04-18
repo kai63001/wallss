@@ -6,6 +6,9 @@ import fs from "fs";
 import mongoose from "mongoose";
 import path from "path";
 import getUser from './getUser';
+import {uploadDrive} from './upload/upload.middleware.js';
+
+
 
 const connectServer = async () => {
   try {
@@ -23,6 +26,13 @@ const connectServer = async () => {
       .toString();
 
     const app: Application = express();
+    app.use(
+      express.urlencoded({
+        extended: true
+      })
+    )
+
+    app.use(express.json())
     type Req = {  req: any }
     const server = new ApolloServer({
       typeDefs,
@@ -43,6 +53,15 @@ const connectServer = async () => {
     app.get("/", (req: Request, res: Response) => {
       res.send("Helloss World!fuck offs yepsaaa");
     });
+
+    app.get('/upload', (req: Request, res: Response) => {
+      res.send('asda')
+    })
+
+    app.post('/upload', async (req: Request, res: Response) => {
+      res.send(await uploadDrive(req.body.img))
+      // res.send(req.body)
+    })
 
     app.listen(4000);
   } catch (error) {
