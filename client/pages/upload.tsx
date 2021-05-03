@@ -4,6 +4,16 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/Upload.module.sass';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+
+const ADD_WALLPAPER_MUTATION = gql`
+    mutation AddWallpaper($image: String!, $name: String!, $tags: String!) {
+        addWallpaper(image: $image, name: $name, tags: $tags) {
+            _id
+        }
+    }
+`;
 
 const upload = () => {
     const router = useRouter();
@@ -14,6 +24,9 @@ const upload = () => {
     // error file check
     const [errorFile, setErrorFile] = useState(false);
     const [errorText, setErrorText] = useState('');
+
+
+    let [addWall, { data }] = useMutation(ADD_WALLPAPER_MUTATION);
     console.log('check');
 
     const hanndleOnInputChange = (e) => {
@@ -97,8 +110,20 @@ const upload = () => {
                 headers: myHeaders,
                 body: urlencoded,
             };
-            const data = await fetch('http://localhost:4000/upload', requestOptions);
-            console.log(await data.text());
+
+            fetch('http://localhost:4000/upload', requestOptions).then(async (res)=> {
+                let img = await res.text()
+                img = `https://drive.google.com/thumbnail?id=${img}&sz=w0-h0`
+                addWall({
+                    variables: {
+                        image: img,
+                        name: dataInput[`name_${i}`],
+                        tags: dataInput[`tags_${i}`]
+                    }
+                }).then((respon)=> {
+                    console.log("response :",respon)
+                })
+            });
         });
     };
 
