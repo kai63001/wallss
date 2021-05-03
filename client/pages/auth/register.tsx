@@ -56,7 +56,7 @@ const Register = () => {
                 <div className={styles.content}>
                     <div className={styles.cover}>
                         <Image
-                            src='https://images3.alphacoders.com/113/1131150.png'
+                            src='https://images3.alphacoders.com/732/thumb-1920-732337.png'
                             alt='wallss create an accounts'
                             quality={100}
                             layout='fill'

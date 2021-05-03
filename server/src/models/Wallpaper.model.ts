@@ -18,7 +18,10 @@ const WallpaperSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    tags: [{
+        type: String,
+    }]
 })
 
 const Wallpaper = mongoose.model('Wallpaper', WallpaperSchema);

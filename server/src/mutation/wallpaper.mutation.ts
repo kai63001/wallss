@@ -8,8 +8,10 @@ export const addWallpaper = (
 ) => {
   // console.log(context);
   console.log("addwallpaper");
-  if (!context.user) throw new Error("Please login");
+  if (!context.user) throw new Error("Please login"); //! auth
   const userId = context.user.userId || "";
   const date = Date.now();
-  return Wallpaper.create({ ...args, date: date, user: userId });
+  const {image,name,tags}  = args;
+  const tagsData = tags.split(',')
+  return Wallpaper.create({ image,name,tags:tagsData, date: date, user: userId });
 };

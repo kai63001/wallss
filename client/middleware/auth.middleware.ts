@@ -26,7 +26,7 @@ export const login = (jwt: String) => {
 export const veriftToken = async (ctx) => {
     let jwtToken = null
     if(ctx?.req){
-      jwtToken = await decodeURIComponent(ctx.req.headers.cookie.replace(/(?:(?:^|.*;\s*)user\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+      jwtToken = await decodeURIComponent(ctx.req.headers.cookie?.replace(/(?:(?:^|.*;\s*)user\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
     }else{
       jwtToken = cookies.get('user')
     }
