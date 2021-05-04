@@ -24,6 +24,8 @@ const upload = () => {
     const [errorFile, setErrorFile] = useState(false);
     const [errorText, setErrorText] = useState('');
 
+    const [uploading,setUploading] = useState(false)
+
 
     let [addWall, { data }] = useMutation(ADD_WALLPAPER_MUTATION);
     console.log('check');
@@ -124,6 +126,7 @@ const upload = () => {
                 headers: myHeaders,
                 body: urlencoded,
             };
+            setUploading(true)
 
             fetch('http://localhost:4000/upload', requestOptions).then(async (res)=> {
                 let img = await res.text()
@@ -138,6 +141,7 @@ const upload = () => {
                     }
                 }).then((respon)=> {
                     console.log("response :",respon)
+                    router.push('/profile');
                 })
             });
         });
@@ -227,6 +231,11 @@ const upload = () => {
                         </div>
                         <div className={styles.inBTW}>
                             {image.length > 0 ? (
+                                uploading ? 
+                                <div className='main-btn m-0'>
+                                      <i className="fas fa-circle-notch fa-spin"></i>
+                                </div>
+                                :
                                 <div onClick={summitUpload} className='main-btn m-0'>
                                     Done
                                 </div>
