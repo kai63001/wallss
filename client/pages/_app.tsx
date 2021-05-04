@@ -7,10 +7,10 @@ import Navbar from "@/components/Navbar"
 import { lightTheme, darkTheme, GlobalStyles } from "../util/ThemeConfig" 
 function MyApp({ Component, pageProps }) {
   
-  let dataTheme = typeof window !== "undefined"?localStorage.getItem("theme"):"light"
+  let dataTheme = typeof window !== "undefined"?localStorage.getItem("theme") == null ?'light':localStorage.getItem("theme"):"light"
   
   const [theme, setTheme] = useState(dataTheme);
-  console.log(dataTheme)
+  console.log(theme)
 
   const toggleTheme = () => {
     theme == "light" ? setTheme("dark") : setTheme("light");
