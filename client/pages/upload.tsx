@@ -1,15 +1,14 @@
 import Layout from '@/components/Layout';
 import { veriftToken } from '@/middleware/auth.middleware';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/Upload.module.sass';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const ADD_WALLPAPER_MUTATION = gql`
-    mutation AddWallpaper($image: String!, $name: String!, $tags: String!) {
-        addWallpaper(image: $image, name: $name, tags: $tags) {
+    mutation AddWallpaper($image: String!, $name: String!, $tags: String!,$author:String,$resolution:String) {
+        addWallpaper(image: $image, name: $name, tags: $tags,author:$author,resolution:$resolution) {
             _id
         }
     }
@@ -53,14 +52,21 @@ const upload = () => {
             console.log('readANdPrv');
             const reader = new FileReader();
             reader.onload = (e) => {
-                setImage((image) => [
+                let imagerr = new Image();
+                imagerr.src = e.target.result;
+                imagerr.onload = function () {
+                    setImage((image) => [
                     ...image,
                     {
                         base64: e.target.result,
                         name: '',
                         tags: '',
+                        author: '',
+                        resolution: `${this.width}X${this.height}`
                     },
-                ]);
+                ])
+                }
+                
             };
             reader.readAsDataURL(file);
         };
@@ -75,7 +81,9 @@ const upload = () => {
                         ...data,
                         ['name_' + count]: '',
                         ['tags_' + count]: '',
+                        ['author_' + count]: '',
                     };
+                    
 
                     count += 1;
                     console.log(dataInput);
@@ -96,10 +104,16 @@ const upload = () => {
 
         for (const [key, value] of Object.entries(dataInput)) {
             console.log(key, value);
+            console.log(key.indexOf('author'))
             if (value == '') {
-                setErrorFile(true);
-                setErrorText("Error: Title or Tags shouldn't empty");
-                return;
+                if(key.indexOf('author') >= 0) {
+
+                }else{
+                    setErrorFile(true);
+                    setErrorText("Error: Title or Tags shouldn't empty");
+                    return;
+                }
+                
             }
         }
         image.forEach(async (d, i) => {
@@ -118,7 +132,9 @@ const upload = () => {
                     variables: {
                         image: img,
                         name: dataInput[`name_${i}`],
-                        tags: dataInput[`tags_${i}`]
+                        tags: dataInput[`tags_${i}`],
+                        author: dataInput[`author_${i}`],
+                        resolution: image[i]['resolution']
                     }
                 }).then((respon)=> {
                     console.log("response :",respon)
@@ -146,7 +162,9 @@ const upload = () => {
                         <li>No screenshots</li>
                         <li>No offensive images</li>
                     </ul>
-                    <br />
+                </div>
+                <br />
+                <div className="box">
                     {image.map((e, i) => (
                         <div key={i} className={'container ' + styles.uploadImage}>
                             <div className={styles.images}>
@@ -169,12 +187,30 @@ const upload = () => {
                                     placeholder='Tags ,separated by comma'
                                     required={true}
                                 />
+                                <input
+                                    type='text'
+                                    onChange={hanndleOnInputChange}
+                                    name={`author_${i}`}
+                                    className='main-input inputColor'
+                                    placeholder='Author.. (Option)'
+                                />
+                                {/* <input
+                                    type='hidden'
+                                    onWaiting={hanndleOnInputChange}
+                                    name={`resolution_${i}`}
+                                    className='main-input inputColor'
+                                    value={e.resolution}
+                                /> */}
                             </div>
                         </div>
                     ))}
-                    <br />
-                    {errorFile == true ? <p className='text-error'>{errorText}</p> : ''}
-                    <br />
+                    <br/>
+                    {errorFile == true ? (
+                    <>
+                        <p className='text-error'>{errorText}</p>
+                        <br/>
+                    </>
+                    ) : ''}
                     <div className={styles.spaceBTW}>
                         <div>
                             <label htmlFor='file' className='dark-btn m-0'>

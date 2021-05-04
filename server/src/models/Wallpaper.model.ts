@@ -21,7 +21,10 @@ const WallpaperSchema = new mongoose.Schema({
     },
     tags: [{
         type: String,
-    }]
+    }],
+    author: {
+        type: String
+    }
 })
 
 const Wallpaper = mongoose.model('Wallpaper', WallpaperSchema);
