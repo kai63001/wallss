@@ -22,3 +22,50 @@
 
 .uploadImage
     margin-top:10px
+
+.tags
+    grid-column: span 8
+    width: 96%
+
+.mainCategoly
+    grid-column: span 4
+    position: relative
+    width: 96%
+    height: 100%
+
+.boxSearchCategoly
+    position: absolute
+    top:35px
+    width: 300px
+    max-height: 100px
+    padding: 3px !important
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+    overflow: auto
+
+.ulList
+    padding:5px 15px
+    margin:0
+    list-style-type: none
+    user-select: none
+
+.liList
+    cursor: pointer
+    padding: 5px 0px
+    user-select: none
+
+
+@media only screen and (max-width: 768px)
+  .tags
+      grid-column: span 12
+      width: 98%
+
+  .mainCategoly
+      grid-column: span 12
+      width: 100%
+
+  .images
+      grid-column: span 12
+
+  .detail
+      grid-column: span 12
+      width: 97%

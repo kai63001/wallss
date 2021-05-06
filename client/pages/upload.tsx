@@ -26,6 +26,9 @@ const upload = () => {
 
     const [uploading,setUploading] = useState(false)
 
+    //categoly
+    const [categoly,setCategoly] = useState(["user","anime","animation","romeo"])
+
 
     let [addWall, { data }] = useMutation(ADD_WALLPAPER_MUTATION);
     console.log('check');
@@ -147,6 +150,32 @@ const upload = () => {
         });
     };
 
+
+    //categoly
+    const [catKey,setCatKey] = useState(false)
+    const [dataCategoly,setDataCategoly] = useState([])
+
+    const onChangeCategoly = (e:any) => {
+        console.log(e.target.value.length);
+        if(e.target.value.length >= 2) { 
+            if(e.target.value.length == 2) {
+                setCatKey(false)
+                setDataCategoly(categoly)
+            }else{
+                console.log(dataCategoly)
+                const data = (dataCategoly.filter((data,i)=>{
+                    return data.indexOf(e.target.value) > -1
+                }))
+                console.log(data)
+                setDataCategoly(data)
+                setCatKey(true)
+            }
+        }else{
+            setCatKey(false)
+        }
+        console.log(catKey);
+    }
+
     return (
         <Layout>
             <div className={styles.main}>
@@ -183,14 +212,37 @@ const upload = () => {
                                     placeholder='Title, caption or description'
                                     required={true}
                                 />
-                                <input
-                                    type='text'
-                                    onChange={hanndleOnInputChange}
-                                    name={`tags_${i}`}
-                                    className='main-input inputColor'
-                                    placeholder='Tags ,separated by comma'
-                                    required={true}
-                                />
+                                <div className={'container2'}>
+                                    <div className={styles.mainCategoly}>
+                                        <input
+                                            type='text'
+                                            onChange={onChangeCategoly}
+                                            name={`categoly_{i}`}
+                                            className={'main-input inputColor '+styles.categoly}
+                                            placeholder='Categoly ex.Anime'
+                                            required={true}
+                                        />
+                                        {catKey?(
+                                            <div className={styles.boxSearchCategoly + ` box`}>
+                                                <ul className={styles.ulList}>
+                                                    {dataCategoly.map((data,i)=>(
+                                                        <li key={i} className={styles.liList}>
+                                                            {data}
+                                                        </li>
+                                                    ))} 
+                                                </ul>
+                                            </div>
+                                        ):('')}
+                                    </div>
+                                    <input
+                                        type='text'
+                                        onChange={hanndleOnInputChange}
+                                        name={`tags_${i}`}
+                                        className={'main-input inputColor '+styles.tags}
+                                        placeholder='Tags ,separated by comma'
+                                        required={true}
+                                    />
+                                </div>
                                 <input
                                     type='text'
                                     onChange={hanndleOnInputChange}
