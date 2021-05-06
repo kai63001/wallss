@@ -14,6 +14,7 @@ const WALLPAPER_QUERY = gql`
       user {
         name
       }
+      tags
     }
   }
 `;
@@ -87,19 +88,18 @@ const ImageWall = () => {
           layout="intrinsic"
         />
         <br />
-        <Link href="/">
-          <a className={styles.tags + " tagColor"}>romeo</a>
-        </Link>
-        <Link href="/">
-          <a className={styles.tags + " tagColor"}>romeo</a>
-        </Link>
+        {data.wallpaper.tags.map((tag,i) => (
+            <Link href="/" key={i}>
+                <a className={styles.tags + " tagColor"}>{tag}</a>
+            </Link>
+        ))}
         <br />
         <div className={styles.comment}>
           <h2>Comments</h2>
           <div className="box">
             <textarea name="" id="" className={styles.textarea + " inputColor"} spellCheck="false" cols={100} rows={5} placeholder="Comment.." ></textarea>
             <br/>
-						<button className={styles.leaveComment + " pointer tagColor"}>Leave Comment</button>
+            <button className={styles.leaveComment + " pointer tagColor"}>Leave Comment</button>
             <div className="clearfix"></div>
           </div>
         </div>
