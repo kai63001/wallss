@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const ADD_WALLPAPER_MUTATION = gql`
-    mutation AddWallpaper($image: String!, $name: String!, $tags: String!,$author:String,$resolution:String,$categoly:String) {
-        addWallpaper(image: $image, name: $name, tags: $tags,author:$author,resolution:$resolution,categoly:$categoly) {
+    mutation AddWallpaper($image: String!, $name: String!, $tags: String!,$author:String,$resolution:String) {
+        addWallpaper(image: $image, name: $name, tags: $tags,author:$author,resolution:$resolution) {
             _id
         }
     }
@@ -111,6 +111,7 @@ const upload = () => {
 
         for (const [key, value] of Object.entries(dataInput)) {
             console.log(key, value);
+            console.log(key.indexOf('author'))
             if (value == '') {
                 if(key.indexOf('author') >= 0) {
 
@@ -159,17 +160,10 @@ const upload = () => {
 
     const onChangeCategoly = (e:any,i:number) => {
         console.log(e.target.value.length);
-        let itemImage = [...image]
-        let item = {
-            ...itemImage[i],
-            categoly: e.target.value
-        }
-        itemImage[i] = item
-
-        setImage(
-            itemImage
-        )
-        hanndleOnInputChange(e)
+        setImage([
+            ...image[1],
+            categoly = "rrrrrrr"
+        ])
         if(e.target.value.length >= 2) {
             if(e.target.value.length == 2) {
                 setCatKey(false)
@@ -187,27 +181,6 @@ const upload = () => {
             setCatKey(false)
         }
         console.log(catKey);
-    }
-
-    const onClickCategoly = (e:any,i:number,ir:number) => {
-        console.log(dataCategoly[ir])
-        let itemImage = [...image]
-        let item = {
-            ...itemImage[i],
-            categoly: dataCategoly[ir]      
-        }
-        itemImage[i] = item
-
-        setImage(
-            itemImage
-        )
-
-        setDataInput({
-            ...dataInput,
-            [`categoly_${i}`]: dataCategoly[ir],
-        });
-
-        setCatKey(false)
     }
 
     return (
@@ -254,7 +227,7 @@ const upload = () => {
                                                 onChangeCategoly(e,i)
                                             }}
                                             value={e.categoly}
-                                            name={`categoly_${i}`}
+                                            name={`categoly_{i}`}
                                             className={'main-input inputColor '+styles.categoly}
                                             placeholder='Categoly ex.Anime'
                                             required={true}
@@ -262,10 +235,8 @@ const upload = () => {
                                         {catKey?(
                                             <div className={styles.boxSearchCategoly + ` box`}>
                                                 <ul className={styles.ulList}>
-                                                    {dataCategoly.map((data,ir)=>(
-                                                        <li value={data} key={ir} onClick={(e)=> {
-                                                            onClickCategoly(e,i,ir)
-                                                        }} className={styles.liList}>
+                                                    {dataCategoly.map((data,i)=>(
+                                                        <li key={i} className={styles.liList}>
                                                             {data}
                                                         </li>
                                                     ))} 

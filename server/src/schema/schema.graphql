@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-    addWallpaper(image: String!,name:String,tags:String,author:String,resolution:String): Wallpaper
+    addWallpaper(image: String!,name:String,tags:String,author:String,resolution:String,categoly:String): Wallpaper
     login(username: String!,password: String!): AuthData,
     register(username: String!,password: String!,name:String!): User
 }
@@ -26,6 +26,7 @@ type Wallpaper {
     tags: [String],
     resolution: String,
     author: String,
+    categoly: String
 }
 
 type AuthData {

@@ -24,6 +24,9 @@ const WallpaperSchema = new mongoose.Schema({
     }],
     author: {
         type: String
+    },
+    categoly: {
+        type: String
     }
 })
 
