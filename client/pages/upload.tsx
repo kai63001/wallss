@@ -98,8 +98,11 @@ const upload = () => {
         let data = dataInput;
         if (files) {
             for (let i = 0; i < files.length; i++) {
-                console.log('🚀 type image : ' + checkTypeImage(files[i].type));
-                if (checkTypeImage(files[i].type)) {
+                console.log('size Image:',files[i].size)
+                if(files[i].size > 10000000){
+                    setErrorFile(true);
+                    setErrorText('Error: size limit 10mb');
+                }else if (checkTypeImage(files[i].type)) {
                     readAndPreview(files[i]);
                     data = {
                         ...data,
@@ -125,8 +128,6 @@ const upload = () => {
     };
 
     const summitUpload = () => {
-        var myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
         for (const [key, value] of Object.entries(dataInput)) {
             console.log(key, value);
@@ -141,41 +142,52 @@ const upload = () => {
                 
             }
         }
-        image.forEach(async (d, i) => {
-            const urlencoded = new URLSearchParams();
-            urlencoded.append('img',d.base64)
-            const requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: urlencoded,
-            };
-            setUploading(true)
-            console.log("type:",dataInput[`type_${i}`])
-
-            fetch('http://localhost:4000/upload', requestOptions).then(async (res)=> {
-                let img = await res.text()
-                img = `https://drive.google.com/thumbnail?id=${img}&sz=w0-h0`
-                if(dataInput[`type_${i}`] == "desktop"){
-                    console.log("Desktop Upload")
-                    addWall({
-                        variables: {
-                            image: img,
-                            name: dataInput[`name_${i}`],
-                            tags: dataInput[`tags_${i}`],
-                            categoly: dataInput[`categoly_${i}`],
-                            author: dataInput[`author_${i}`],
-                            resolution: image[i]['resolution'],
-                        }
-                    }).then((respon) => {
-                        console.log("response :", respon)
-                        router.push('/profile');
-                    })
-                }else{
-                    console.log("MoBile Upload")
-                }
-            });
-        });
+        uploadData(image)
     };
+
+    const uploadData = (image:any,i=0) => {
+        var myHeaders = new Headers();
+        console.log("i:",i)
+        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+        const urlencoded = new URLSearchParams();
+        urlencoded.append('img', image[i].base64)
+        console.log("imgBase64",image)
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+        };
+        setUploading(true)
+        console.log("type:", dataInput[`type_${i}`])
+
+        fetch('http://localhost:4000/upload', requestOptions).then(async (res) => {
+            let img = await res.text()
+            img = await `https://drive.google.com/thumbnail?id=${img}&sz=w0-h0`
+            if (dataInput[`type_${i}`] == "desktop") {
+                console.log("Desktop Upload")
+                addWall({
+                    variables: {
+                        image: img,
+                        name: dataInput[`name_${i}`],
+                        tags: dataInput[`tags_${i}`],
+                        categoly: dataInput[`categoly_${i}`],
+                        author: dataInput[`author_${i}`],
+                        resolution: image[i]['resolution'],
+                    }
+                }).then((respon) => {
+                    console.log("image.length and i -1:", image.length,i)
+                    if(image.length <= i+1){
+                        router.push('/profile')
+                        return
+                    }else{
+                        uploadData(image,i+1)
+                    }
+                })
+            } else {
+                console.log("MoBile Upload")
+            }
+        });
+    }
 
 
     //categoly

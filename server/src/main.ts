@@ -31,7 +31,7 @@ const connectServer = async () => {
     app.use(
       express.urlencoded({
         extended: true,
-        limit: "5mb"
+        limit: "10mb"
       })
     )
 
