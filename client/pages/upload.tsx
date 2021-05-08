@@ -107,6 +107,7 @@ const upload = () => {
                         ['tags_' + count]: '',
                         ['author_' + count]: '',
                         ['categoly_' + count]: '',
+                        ['type_' + count]: 'desktop',
                     };
                     
 
@@ -149,23 +150,29 @@ const upload = () => {
                 body: urlencoded,
             };
             setUploading(true)
+            console.log("type:",dataInput[`type_${i}`])
 
             fetch('http://localhost:4000/upload', requestOptions).then(async (res)=> {
                 let img = await res.text()
                 img = `https://drive.google.com/thumbnail?id=${img}&sz=w0-h0`
-                addWall({
-                    variables: {
-                        image: img,
-                        name: dataInput[`name_${i}`],
-                        tags: dataInput[`tags_${i}`],
-                        categoly: dataInput[`categoly_${i}`],
-                        author: dataInput[`author_${i}`],
-                        resolution: image[i]['resolution'],
-                    }
-                }).then((respon)=> {
-                    console.log("response :",respon)
-                    router.push('/profile');
-                })
+                if(dataInput[`type_${i}`] == "desktop"){
+                    console.log("Desktop Upload")
+                    addWall({
+                        variables: {
+                            image: img,
+                            name: dataInput[`name_${i}`],
+                            tags: dataInput[`tags_${i}`],
+                            categoly: dataInput[`categoly_${i}`],
+                            author: dataInput[`author_${i}`],
+                            resolution: image[i]['resolution'],
+                        }
+                    }).then((respon) => {
+                        console.log("response :", respon)
+                        router.push('/profile');
+                    })
+                }else{
+                    console.log("MoBile Upload")
+                }
             });
         });
     };
@@ -275,14 +282,22 @@ const upload = () => {
                                 <img src={e.base64} className='imageRadius wallpaperLoading' width='100%' alt='' />
                             </div>
                             <div className={styles.detail}>
-                                <input
-                                    type='text'
-                                    onChange={hanndleOnInputChange}
-                                    name={`name_${i}`}
-                                    className={`main-input inputColor`}
-                                    placeholder='Title, caption or description'
-                                    required={true}
-                                />
+                                <div className="container2">
+                                    <input
+                                        type='text'
+                                        onChange={hanndleOnInputChange}
+                                        name={`name_${i}`}
+                                        className={`main-input inputColor ${styles.name}`}
+                                        placeholder='Title, caption or description'
+                                        required={true}
+                                    />
+                                    <div className={styles.type}>
+                                        <select onChange={hanndleOnInputChange} className={`main-input inputColor ${styles.selection}`} name={`type_${i}`}>
+                                            <option value="desktop">Desktop</option>
+                                            <option value="mobile">Mobile</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div className={'container2'}>
                                     <div className={styles.mainCategoly}>
                                         <input
