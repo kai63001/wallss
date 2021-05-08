@@ -1,6 +1,6 @@
 import Category from "../models/Category.model";
 
-export const addCategory = (
+export const addCategory = async (
   parent: any,
   args: any,
   context: any,
@@ -10,6 +10,10 @@ export const addCategory = (
   console.log("addcategory");
   if (!context.user) throw new Error("Please login"); //! auth
   const {name}  = args;
+  const findCat = await Category.find({name}).lean()
+  console.log(findCat)
+  if(findCat.length > 0)
+    return findCat
   return Category.create({ name });
 };
 
