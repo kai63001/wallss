@@ -14,6 +14,22 @@ const ADD_WALLPAPER_MUTATION = gql`
     }
 `;
 
+const ADD_CATEGORY_MUTATION = gql`
+    mutation AddCategoly($name:String!) {
+        addCategory(name:$name){
+            _id
+        }
+    }
+`;
+
+const FIND_CATEGORY_MUTATION = gql`
+    mutation FindCategoly($name:String!) {
+        findCategory(name:$name){
+            name
+        }
+    }
+`;
+
 const upload = () => {
     const router = useRouter();
     const [image, setImage] = useState([]);
@@ -31,6 +47,8 @@ const upload = () => {
 
 
     let [addWall, { data }] = useMutation(ADD_WALLPAPER_MUTATION);
+    let [addCategory] = useMutation(ADD_CATEGORY_MUTATION);
+    let [findCategory] = useMutation(FIND_CATEGORY_MUTATION);
     console.log('check');
 
     const hanndleOnInputChange = (e) => {
@@ -57,7 +75,7 @@ const upload = () => {
             console.log('readANdPrv');
             const reader = new FileReader();
             reader.onload = (e) => {
-                let imagerr = new Image();
+                let imagerr :any = new Image();
                 imagerr.src = e.target.result;
                 imagerr.onload = function () {
                     setImage((image) => [
@@ -172,12 +190,19 @@ const upload = () => {
         hanndleOnInputChange(e)
         if(e.target.value.length >= 2) {
             if(e.target.value.length == 2) {
-                setCatKey(false)
-                setDataCategoly(categoly)
+                findCategory({
+                    variables: {
+                        name: e.target.value
+                    }
+                }).then((res)=>{
+                    setCatKey(false)
+                    console.log(res.data.findCategory.name)
+                    setDataCategoly(res.data.findCategory)
+                })
             }else{
                 console.log(dataCategoly)
-                const data = (dataCategoly.filter((data,i)=>{
-                    return data.indexOf(e.target.value) > -1
+                const data = (dataCategoly?.filter((data,i)=>{
+                    return data?.name?.indexOf(e.target.value) > -1
                 }))
                 console.log(data)
                 setDataCategoly(data)
@@ -194,7 +219,7 @@ const upload = () => {
         let itemImage = [...image]
         let item = {
             ...itemImage[i],
-            categoly: dataCategoly[ir]      
+            categoly: dataCategoly[ir].name      
         }
         itemImage[i] = item
 
@@ -204,9 +229,21 @@ const upload = () => {
 
         setDataInput({
             ...dataInput,
-            [`categoly_${i}`]: dataCategoly[ir],
+            [`categoly_${i}`]: dataCategoly[ir].name,
         });
 
+        setCatKey(false)
+    }
+
+    const onClickAddCategory = (i:number) => {
+        console.log(dataInput[`categoly_${i}`])
+        addCategory({
+            variables: {
+                name: dataInput[`categoly_${i}`]
+            }
+        }).then((respon)=> {
+                console.log("response :",respon)
+            })
         setCatKey(false)
     }
 
@@ -256,19 +293,24 @@ const upload = () => {
                                             value={e.categoly}
                                             name={`categoly_${i}`}
                                             className={'main-input inputColor '+styles.categoly}
-                                            placeholder='Categoly ex.Anime'
+                                            placeholder='Category ex.Anime'
                                             required={true}
                                         />
                                         {catKey?(
                                             <div className={styles.boxSearchCategoly + ` box`}>
                                                 <ul className={styles.ulList}>
-                                                    {dataCategoly.map((data,ir)=>(
-                                                        <li value={data} key={ir} onClick={(e)=> {
+                                                    {dataCategoly?.map((data,ir)=>(
+                                                        <li key={ir} onClick={(e)=> {
                                                             onClickCategoly(e,i,ir)
                                                         }} className={styles.liList}>
-                                                            {data}
+                                                            {data.name}
                                                         </li>
                                                     ))} 
+                                                    <li onClick={(e) => {
+                                                        onClickAddCategory(i)
+                                                    }} className={styles.liList2}>
+                                                        <i className="fas fa-plus"></i> Add category
+                                                    </li>
                                                 </ul>
                                             </div>
                                         ):('')}

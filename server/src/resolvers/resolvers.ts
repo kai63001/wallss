@@ -9,6 +9,7 @@ import { wallpapers,wallpaper } from "../query/wallpaper.query";
 // Mutaiton
 import { login, register } from "../mutation/auth.mutation"
 import { addWallpaper } from "../mutation/wallpaper.mutation"
+import { addCategory ,findCategory } from "../mutation/category.mutation"
 
 
 const resolvers = {
@@ -17,12 +18,14 @@ const resolvers = {
     users,
     user,
     wallpapers,
-    wallpaper
+    wallpaper,
   },
   Mutation: {
     login,
     register,
-    addWallpaper
+    addWallpaper,
+    addCategory,
+    findCategory
   },
 };
 

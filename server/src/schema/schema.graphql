@@ -10,6 +10,8 @@ type Mutation {
     addWallpaper(image: String!,name:String,tags:String,author:String,resolution:String,categoly:String): Wallpaper
     login(username: String!,password: String!): AuthData,
     register(username: String!,password: String!,name:String!): User
+    addCategory(name:String): Category
+    findCategory(name: String): [Category]
 }
 
 type User {
@@ -35,7 +37,7 @@ type AuthData {
   username: String
 }
 
-type Tags {
+type Category {
   _id: ID!,
   name: String
 }
