@@ -14,7 +14,9 @@ const WALLPAPER_QUERY = gql`
       user {
         name
       }
+      author
       tags
+      categoly
     }
   }
 `;
@@ -63,7 +65,7 @@ const ImageWall = () => {
                 {data.wallpaper.name || "Wallss"}
               </h1>
               <span className={styles.uploadBy}>
-                by {data.wallpaper.user.name.toUpperCase()}
+                Shared by {data.wallpaper.user.name.toUpperCase()} {data.wallpaper.author && (`● Author ${data.wallpaper.author.toUpperCase()}`)}
               </span>
             </div>
           </div>
@@ -88,11 +90,25 @@ const ImageWall = () => {
           layout="intrinsic"
         />
         <br />
-        {data.wallpaper.tags.map((tag,i) => (
-            <Link href="/" key={i}>
+        <div className={styles.tagCat}>
+          <div className="">
+            {data.wallpaper.categoly && (
+              <>
+                <Link href="/">
+                  <a className={styles.tags + " tagColor"}>{data.wallpaper.categoly}</a>
+                </Link>
+                <br />
+              </>
+            )}
+          </div>
+          <div className="">
+            {data.wallpaper.tags.map((tag, i) => (
+              <Link href="/" key={i}>
                 <a className={styles.tags + " tagColor"}>{tag}</a>
-            </Link>
-        ))}
+              </Link>
+            ))}
+          </div>
+        </div>
         <br />
         <div className={styles.comment}>
           <h2>Comments</h2>
