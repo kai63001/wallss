@@ -132,11 +132,11 @@ const upload = () => {
         for (const [key, value] of Object.entries(dataInput)) {
             console.log(key, value);
             if (value == '') {
-                if(key.indexOf('author') >= 0) {
+                if(key.indexOf('author') >= 0 || key.indexOf('tags') >= 0) {
 
                 }else{
                     setErrorFile(true);
-                    setErrorText("Error: Title or Tags shouldn't empty");
+                    setErrorText("Error: Title or Category shouldn't empty");
                     return;
                 }
                 

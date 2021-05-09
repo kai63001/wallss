@@ -105,11 +105,14 @@ const ImageWall = () => {
             )}
           </div>
           <div className="">
-            {data.wallpaper.tags.map((tag, i) => (
-              <Link href="/" key={i}>
-                <a className={styles.tags + " tagColor"}>{tag}</a>
-              </Link>
-            ))}
+            {data.wallpaper.tags.map((tag, i) => {
+              if (tag.length > 0)
+              return (
+                <Link href="/" key={i}>
+                  <a className={styles.tags + " tagColor"}>{tag}</a>
+                </Link>
+              )
+            })}
           </div>
         </div>
         <br />

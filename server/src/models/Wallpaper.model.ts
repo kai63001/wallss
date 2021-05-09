@@ -12,7 +12,7 @@ const WallpaperSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: Number,
+        type: String,
         require: true
     },
     user: {
