@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Wallpaper.module.sass";
+import {dayNow} from "@/middleware/days.middleware"
 
 const WALLPAPER_QUERY = gql`
   query Wallpaper($_id: ID!) {
@@ -17,6 +18,8 @@ const WALLPAPER_QUERY = gql`
       author
       tags
       categoly
+      resolution
+      date
     }
   }
 `;
@@ -110,6 +113,16 @@ const ImageWall = () => {
           </div>
         </div>
         <br />
+        <div className="box">
+          {data.wallpaper?.resolution &&(
+            <div>
+              Resolution : {data.wallpaper.resolution}
+            </div>
+          )}
+          <div>
+            Date Added : {dayNow(data.wallpaper.date)}
+          </div>
+        </div>
         <div className={styles.comment}>
           <h2>Comments</h2>
           <div className="box">

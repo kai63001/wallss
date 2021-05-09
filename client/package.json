@@ -19,6 +19,7 @@
     "cookie": "^0.4.1",
     "cookie-cutter": "^0.2.0",
     "cookies": "^0.8.0",
+    "dayjs": "^1.10.4",
     "fs": "0.0.1-security",
     "googleapis": "^39.2.0",
     "graphql": "^15.5.0",
