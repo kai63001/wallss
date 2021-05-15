@@ -21,13 +21,15 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [vpassword, setVPassword] = useState('');
+    const [errorInput ,setErrorInput] = useState('');
+    const [errorText ,setErrorText] = useState('');
     let [register, { data }] = useMutation(REGISTER_MUTATION);
     const onRegister = (e) => {
         e.preventDefault();
         e.target.vpassword.setCustomValidity('');
         if (password != vpassword) {
-            e.target.password.setCustomValidity('Password and VerifyPassword not match!!');
-            e.target.password.reportValidity();
+            setErrorInput('password')
+            setErrorText('Password and VerifyPassword not match!!')
         } else {
             register({
                 variables: {
@@ -44,8 +46,8 @@ const Register = () => {
                     // console.log(e)
                     if (error == 'Error: username already exit') {
                         console.log('username already exit');
-                        e.target.username.setCustomValidity('username already exit');
-                        e.target.username.reportValidity();
+                        setErrorInput('username')
+                        setErrorText('username already exit')
                     }
                 });
         }
@@ -74,19 +76,20 @@ const Register = () => {
                         <br />
                         <form onSubmit={onRegister}>
                             <label className='main-label' htmlFor='username'>
-                                Username :
+                                Username : 
+                                {errorInput.indexOf('username') >= 0&&(<span className="text-error"> {errorText}</span>)}
                             </label>
                             <br />
                             <input
                                 id='username'
                                 name='username'
-                                className='main-input inputColor'
+                                className={`main-input ${errorInput.indexOf('username') >= 0 ? 'error-input' : 'inputColor'}`}
                                 type='text'
                                 placeholder='wallss'
                                 value={username}
                                 onChange={(e) => {
+                                    setErrorInput('')
                                     setUsername(e.target.value);
-                                    e.target.setCustomValidity('');
                                 }}
                                 required
                             />
@@ -103,42 +106,44 @@ const Register = () => {
                                 placeholder='user@wallss.net'
                                 value={email}
                                 onChange={(e) => {
+                                    setErrorInput('')
                                     setEmail(e.target.value);
-                                    e.target.setCustomValidity('');
                                 }}
                                 required
                             />
                             <label className='main-label' htmlFor='password'>
                                 Password :
+                                {errorInput.indexOf('password') >= 0&&(<span className="text-error"> {errorText}</span>)}
                             </label>
                             <br />
                             <input
                                 id='password'
                                 name='password'
-                                className='main-input inputColor'
+                                className={`main-input ${errorInput.indexOf('password') >= 0 ? 'error-input' : 'inputColor'}`}
                                 type='password'
                                 placeholder='wallPass@1234'
                                 value={password}
                                 onChange={(e) => {
+                                    setErrorInput('')
                                     setPassword(e.target.value);
-                                    e.target.setCustomValidity('');
                                 }}
                                 required
                             />
                             <label className='main-label' htmlFor='vpassword'>
                                 Verify Password :
+                                {errorInput.indexOf('password') >= 0&&(<span className="text-error"> {errorText}</span>)}
                             </label>
                             <br />
                             <input
                                 id='vpassword'
                                 name='vpassword'
-                                className='main-input inputColor'
                                 type='password'
+                                className={`main-input ${errorInput.indexOf('password') >= 0 ? 'error-input' : 'inputColor'}`}
                                 placeholder='wallPass@1234'
                                 value={vpassword}
                                 onChange={(e) => {
+                                    setErrorInput('')
                                     setVPassword(e.target.value);
-                                    e.target.setCustomValidity('');
                                 }}
                                 required
                             />

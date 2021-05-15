@@ -17,7 +17,7 @@ export default function createApolloClient(initialState, ctx) {
         ssrMode: Boolean(ctx),
         // link: concat(authMiddleware, httpLink),
         link: createUploadLink({
-          uri: 'http://0.0.0.0:4000/graphql',
+          uri: 'http://localhost:4000/graphql',
           headers: {
             "authorization": jwtToken
           }

@@ -11,8 +11,11 @@ const cors = require('cors')
 
 
 const connectServer = async () => {
+  // const uri = "mongodb://romeo:qw123456@mongo:27017/wallss"
+  const uri = "mongodb://localhost:27017/wallss"
+
   try {
-     mongoose.connect("mongodb://romeo:qw123456@mongo:27017/wallss", {
+     mongoose.connect(uri, {
       useNewUrlParser: true,
     });
     const db =  mongoose.connection;
