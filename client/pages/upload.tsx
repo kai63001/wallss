@@ -17,7 +17,7 @@ const ADD_WALLPAPER_MUTATION = gql`
 const ADD_CATEGORY_MUTATION = gql`
     mutation AddCategoly($name:String!) {
         addCategory(name:$name){
-            _id
+            name
         }
     }
 `;
@@ -221,7 +221,7 @@ const upload = () => {
             }else{
                 console.log(dataCategoly)
                 const data = (dataCategoly?.filter((data,i)=>{
-                    return data?.name?.indexOf(e.target.value) > -1
+                    return data?.name?.search(new RegExp(e.target.value,"i")) > -1
                 }))
                 console.log(data)
                 setDataCategoly(data)
@@ -262,6 +262,21 @@ const upload = () => {
             }
         }).then((respon)=> {
                 console.log("response :",respon)
+                let itemImage = [...image]
+                let item = {
+                    ...itemImage[i],
+                    categoly: respon.data.addCategory.name      
+                }
+                itemImage[i] = item
+
+                setImage(
+                    itemImage
+                )
+
+                setDataInput({
+                    ...dataInput,
+                    [`categoly_${i}`]: respon.data.addCategory.name,
+                });
             })
         setCatKey(false)
     }
