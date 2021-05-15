@@ -1,4 +1,4 @@
-import Wallpaper from "@models/Wallpaper.model";
+import Wallpaper from "../models/Wallpaper.model";
 
 export const wallpapers = (parent: any, args: any, context: any, info: any) => {
   return Wallpaper.find({})
