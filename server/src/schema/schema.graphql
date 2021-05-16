@@ -4,6 +4,7 @@ type Query {
   users: [User]!
   wallpapers(limit: Int): [Wallpaper]
   wallpaper(_id: ID!): Wallpaper
+  categoryPage(page: Int,category: String!): CategoryPage
 }
 
 type Mutation {
@@ -30,6 +31,24 @@ type Wallpaper {
     author: String,
     categoly: String
 }
+
+type CategoryPage  {
+  itemsList: [Wallpaper]
+  paginator: paginator
+}
+
+type paginator {
+    itemCount: Int,
+    perPage: Int,
+    pageCount: Int,
+    currentPage: Int,
+    slNo: Int,
+    hasPrevPage: Boolean,
+    hasNextPage: Boolean,
+    prev: String,
+    next: String
+}
+
 
 type AuthData {
   _id: ID,

@@ -45,9 +45,9 @@ const connectServer = async () => {
       typeDefs,
       resolvers,
       context: (context:any) => {
-        console.log(context.req.headers.authorization)
+        // console.log(context.req.headers.authorization)
         // console.log(context.req.headers.cookies)
-        console.log("login")
+        // console.log("login")
         const token = context.req.headers.authorization || '';
         const user:any = getUser(token);
 

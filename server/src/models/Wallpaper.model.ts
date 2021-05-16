@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongoosePaginate  from 'mongoose-paginate-v2';
 
 const WallpaperSchema = new mongoose.Schema({
     resolution: {
@@ -29,6 +30,9 @@ const WallpaperSchema = new mongoose.Schema({
         type: String
     }
 })
+
+WallpaperSchema.plugin(mongoosePaginate);
+
 
 const Wallpaper = mongoose.model('Wallpaper', WallpaperSchema);
 

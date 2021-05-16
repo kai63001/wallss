@@ -7,7 +7,7 @@ const getUser = (token:String) => {
 
     try {
         const decodedToekn = jwt.verify(parToken, process.env.SECRET || 'shadow');
-        console.log(decodedToekn)
+        // console.log(decodedToekn)
         return decodedToekn;
     } catch (error) {
       return null
